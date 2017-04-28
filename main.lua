@@ -1,3 +1,5 @@
+local anim8 = require('lib/anim8/anim8')
+
 function love.load()
   cloud1 = love.graphics.newImage("cloud1.png")
   cookie1 = love.graphics.newImage("Cookie1.1.png")
