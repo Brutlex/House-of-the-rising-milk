@@ -10,4 +10,5 @@ end
 
 function love.draw()
   love.graphics.draw(cookie1, 100, 100)
+  love.graphics.rectangle("fill", 0, love.graphics.getHeight() - 100, love.graphics.getWidth(), 100)
 end
