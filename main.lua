@@ -17,7 +17,7 @@ function love.load()
   objects.cookie.fixture = love.physics.newFixture(objects.cookie.body, objects.cookie.shape, 1)
 
 
-  canvas1 = love.graphics.newCanvas(love.graphics.getWidth(), love.graphics.getHeight())
+  canvas1 = love.graphics.newCanvas(love.graphics.getWidth(), love.graphics.getHeight() + 100)
 
   -- comment
   love.graphics.setBackgroundColor(177, 215, 231)
@@ -29,8 +29,10 @@ end
  
 
 function love.draw()
+  
   objects.cookie.fixture:setRestitution(0.9)love.graphics.draw(cookie1, objects.cookie.body:getX(), objects.cookie.body:getY())
   love.graphics.draw(cloud1, 300, 300)
   love.graphics.rectangle("fill", 0, love.graphics.getHeight() - 100, love.graphics.getWidth(), 100)
+  love.graphics.draw(canvas1, 0, 0)
   
 end
