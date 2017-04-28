@@ -4,7 +4,7 @@ end
  
 
 function love.update(dt)
-
+print(love.graphics.getHeight())
 end
  
 
