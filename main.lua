@@ -4,6 +4,7 @@ function love.load()
   --test
   cloud1 = love.graphics.newImage("gfx/cloud1.png")
   cookie1 = love.graphics.newImage("gfx/Cookie1.1.png")
+
   
   love.physics.setMeter(64)
   world = love.physics.newWorld(0, 12*64, true)
@@ -14,6 +15,9 @@ function love.load()
   objects.cookie.body =  love.physics.newBody(world, 1024/2, 768/2, "dynamic")
   objects.cookie.shape = love.physics.newCircleShape(40)
   objects.cookie.fixture = love.physics.newFixture(objects.cookie.body, objects.cookie.shape, 1)
+
+
+  canvas1 = love.graphics.newCanvas(love.graphics.getWidth(), love.graphics.getHeight())
 
   -- comment
   love.graphics.setBackgroundColor(177, 215, 231)
