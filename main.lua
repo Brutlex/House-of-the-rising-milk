@@ -1,4 +1,4 @@
-local anim8 = require('lib/anim8/anim8')
+local anim8 = require('lib/anim8')
 
 function love.load()
   --test
