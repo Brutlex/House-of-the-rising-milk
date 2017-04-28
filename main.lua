@@ -4,6 +4,7 @@ function love.load()
   --test
   cloud1 = love.graphics.newImage("gfx/cloud1.png")
   cookie1 = love.graphics.newImage("gfx/Cookie1.1.png")
+  canvas1 = love.graphics.newCanvas(love.graphics.getWidth(), love.graphics.getHeight())
   -- comment
   love.graphics.setBackgroundColor(177, 215, 231)
 end
