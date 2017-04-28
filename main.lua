@@ -1,4 +1,5 @@
 local anim8 = require('lib/anim8')
+local mc = require('lib/middleclass')
 
 function love.load()
   --test
@@ -7,7 +8,7 @@ function love.load()
 
   
   love.physics.setMeter(64)
-  world = love.physics.newWorld(0, 12*64, true)
+  world = love.physics.newWorld(0, 9.81*64, true)
   
   objects = {}
   
@@ -16,6 +17,10 @@ function love.load()
   objects.cookie.shape = love.physics.newCircleShape(40)
   objects.cookie.fixture = love.physics.newFixture(objects.cookie.body, objects.cookie.shape, 1)
 
+  objects.cloud = {}
+  objects.cloud.body =  love.physics.newBody(world, 1024/2, 768/2)
+  objects.cloud.shape = love.physics.newRectangleShape(160, 0)
+  objects.cloud.fixture = love.physics.newFixture(objects.cloud.body, objects.cloud.shape)
 
   canvas1 = love.graphics.newCanvas(love.graphics.getWidth(), love.graphics.getHeight() + 100)
 
@@ -25,13 +30,18 @@ end
  
 
 function love.update(dt)
+  world:update(dt)
+  if love.keyboard.isDown("right") then
+    objects.cookie.body:applyForce (400,0)
+  end 
+  
 end
  
 
 function love.draw()
   
   objects.cookie.fixture:setRestitution(0.9)love.graphics.draw(cookie1, objects.cookie.body:getX(), objects.cookie.body:getY())
-  love.graphics.draw(cloud1, 300, 300)
+  objects.cookie.fixture:setRestitution(0.9)love.graphics.draw(cloud1, objects.cloud.body:getX(), objects.cloud.body:getY())
   love.graphics.rectangle("fill", 0, love.graphics.getHeight() - 100, love.graphics.getWidth(), 100)
   love.graphics.draw(canvas1, 0, 0)
   
