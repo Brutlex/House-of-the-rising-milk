@@ -1,4 +1,5 @@
 local anim8 = require('lib/anim8')
+local mc = require('lib/middleclass.lua')
 
 function love.load()
   --test
