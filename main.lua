@@ -29,7 +29,7 @@ function love.load()
   objects = {}
   
   cloudA = Cloud:new(C.W/2, C.H/2)
-  cloudB = Cloud:new(C.W/2+10, C.H/2+10)
+  cloudB = Cloud:new(C.W/2-200, C.H/2-100)
   
   cookieA = Cookie:new(C.W/2, C.H/2)
   
