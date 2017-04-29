@@ -4,15 +4,26 @@ local class = require('lib/middleclass')
 
 Cloud = class('Cloud')
 
-function Cloud:initialize(x, y, canvas)
+function Cloud:initialize(x, y, canvas, form)
   self.canvas = canvas -- 'a' or 'b'
   self.relY = y
+  self.Size = form
   self.body = love.physics.newBody(world, x, y)
-  self.shape = love.physics.newRectangleShape(400,30)
+  
+  
+  if self.Size == cloud1 then
+    self.shape = love.physics.newRectangleShape(387,80)
+  elseif self.Size == cloud2 then
+    self.shape = love.physics.newRectangleShape(180,47)
+  elseif self.Size == cloud3 then
+    self.shape = love.physics.newRectangleShape(362,70)
+  end
+  
+  
   self.fixture = love.physics.newFixture(self.body, self.shape, 100)
   self.fixture:setRestitution(0)
   self.fixture:setUserData("cloud")
-  self.image = cloud1
+  self.image = form
 end
 
 function Cloud:update(dt)

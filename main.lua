@@ -33,14 +33,19 @@ function love.load()
   world:setCallbacks(beginContact, endContact, preSolve, postSolve)
   
   --Test wolken --
-  table.insert(clouds, Cloud:new(C.W/2+100, C.H/2+100, 'a'))
-  table.insert(clouds, Cloud:new(C.W/2-100, C.H/2-100, 'a'))
-  table.insert(clouds, Cloud:new(C.W/2-200, C.H/2+100, 'a'))
-  table.insert(clouds, Cloud:new(C.W/2+100, C.H/2-300, 'a'))
+  table.insert(clouds, Cloud:new(C.W/2+275, C.H/2+200, 'a', cloud2))
+  table.insert(clouds, Cloud:new(C.W/2-50, C.H/2-100, 'a', cloud1))
+  table.insert(clouds, Cloud:new(C.W/2-300, C.H/2+150, 'a', cloud2))
+  table.insert(clouds, Cloud:new(C.W/2+150, C.H/2-300, 'a', cloud3))
+  
+  table.insert(clouds, Cloud:new(C.W/2+200, C.H/2+200, 'b', cloud1))
+  table.insert(clouds, Cloud:new(C.W/2-50, C.H/2-100, 'b', cloud3))
+  table.insert(clouds, Cloud:new(C.W/2-300, C.H/2+150, 'b', cloud2))
+  table.insert(clouds, Cloud:new(C.W/2+150, C.H/2-350, 'b', cloud3))
   
   -- CookieSpieler --
-  cookieA = Cookie:new(C.W/2-100, C.H/2-400, "cookie1", Cookie1)
-  cookieB = Cookie:new(C.W/2+100, C.H/2+100,"cookie2", Cookie2)
+  cookieA = Cookie:new(C.W/2+250, C.H/2+200, "cookie1", Cookie1)
+  cookieB = Cookie:new(C.W/2-350, C.H/2+150,"cookie2", Cookie2)
   
   
   canvas1 = love.graphics.newCanvas(C.W, C.H + 100)
