@@ -39,7 +39,7 @@ function love.load()
   table.insert(clouds, Cloud:new(C.W/2+100, C.H/2-300, 'a'))
   
   -- CookieSpieler --
-  cookieA = Cookie:new(C.W/2-100, C.H/2-200, "cookie1", Cookie1)
+  cookieA = Cookie:new(C.W/2-100, C.H/2-400, "cookie1", Cookie1)
   cookieB = Cookie:new(C.W/2+100, C.H/2+100,"cookie2", Cookie2)
   
   
