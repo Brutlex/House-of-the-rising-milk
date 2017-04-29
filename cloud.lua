@@ -10,11 +10,11 @@ function Cloud:initialize(x, y, canvas, form)
   self.Size = form
   self.body = love.physics.newBody(world, x, y)
     
-  if self.Size == cloud1 then
+  if self.Size == cloudM1 then
     self.shape = love.physics.newRectangleShape(387,80)
-  elseif self.Size == cloud2 then
+  elseif self.Size == cloudS1 then
     self.shape = love.physics.newRectangleShape(180,47)
-  elseif self.Size == cloud3 then
+  elseif self.Size == cloudM2 then
     self.shape = love.physics.newRectangleShape(362,70)
   end
   
