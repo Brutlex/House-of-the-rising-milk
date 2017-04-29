@@ -18,5 +18,7 @@ function load_assets()
   right = love.graphics.newImage("gfx/CookieB_right1.png"),
   jumpUp = love.graphics.newImage("gfx/CookieB_jumpUp.png"),
   jumpLand = love.graphics.newImage("gfx/CookieB_jumpLand.png"),
-  }
+}
+
+  buttonFont = love.graphics.newFont(30)
 end

@@ -1,12 +1,14 @@
 local anim8 = require('lib/anim8')
 local mc = require('lib/middleclass')
-local Gamestate = require('lib/gamestate')
+Gamestate = require('lib/gamestate')
+suit = require('lib/SUIT')
 
 require('assets')
 require('cloud')
 require('cookie')
 require('scrollcanvas')
 require('world')
+require('menu')
 
 C = { --table for constants
   g = 9.81,
@@ -20,14 +22,20 @@ C = { --table for constants
 -- DEBUG.off()
 
 -- gamestate stuff
-local menu = {}
-local game = {}
+menu = {}
+game = {}
 
-function menu:draw()
-  love.graphics.print("Press Enter to continue", 10, 10)
+function menu:update()
+  update_menu()
 end
 
-function menu:keyreleased(key, code)
+function menu:draw()
+  --love.graphics.print("Press Enter to continue", 10, 10)
+  suit.draw()
+end
+
+function menu:keypressed(key, code)
+  suit.keypressed(key)
   if key == 'return' then
     Gamestate.switch(game)
   end
@@ -99,7 +107,6 @@ function love.load()
   love.graphics.setBackgroundColor(177, 215, 231)
 
   Gamestate.registerEvents()
-  --Gamestate.switch(game)
   Gamestate.switch(menu)
 end
 
