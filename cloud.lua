@@ -7,7 +7,7 @@ Cloud = class('Cloud')
 function Cloud:initialize(x, y, canvas)
   self.canvas = canvas -- 'a' or 'b'
   self.relY = y
-  self.body = love.physics.newBody(world, x, y)
+  self.body = love.physics.newBody(world, x, y, "static")
   self.shape = love.physics.newRectangleShape(150, 0)
   self.fixture = love.physics.newFixture(self.body, self.shape)
   self.fixture:setRestitution(0.5)
