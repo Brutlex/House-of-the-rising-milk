@@ -29,15 +29,12 @@ function love.load()
   world = love.physics.newWorld(0, C.g*love.physics.getMeter(), true)
   
   
-<<<<<<< HEAD
-  cloudA = Cloud:new(C.W/2, C.H/2)
-  cloudB = Cloud:new(C.W/2-200, C.H/2-100)
-=======
   table.insert(clouds, Cloud:new(C.W/2, C.H/2))
   table.insert(clouds, Cloud:new(C.W/2+100, C.H/2+100))
->>>>>>> 257839bbb57dcf67b4468cfc7ab94efbc0c914cd
+
   
   cookieA = Cookie:new(C.W/2, C.H/2)
+  cookieB = Cookie:new(C.W/2+100, C.H/2+100)
   
   canvas1 = love.graphics.newCanvas(C.W, C.H + 100)
 
@@ -49,13 +46,20 @@ function love.update(dt)
   world:update(dt)
   
   if love.keyboard.isDown("right") then
-    --cookieA.body:applyLinearImpulse(10, 0)
-    cookieA:rechtsGehen() 
+     cookieA:rechtsGehen() 
+  elseif love.keyboard.isDown("d") then
+     cookieB:rechtsGehen()
+  elseif love.keyboard.isDown("left") then
+     cookieA:linksGehen() 
+  elseif love.keyboard.isDown("a") then
+     cookieB:linksGehen()
+  elseif love.keyboard.isDown("up") then
+     cookieA:springen() 
+  elseif love.keyboard.isDown("w") then
+     cookieB:springen()
   end
   
-  update_cookies(dt)
-  
-  update_scrollcanvas(dt)
+    update_scrollcanvas(dt)
     
   
 end
@@ -70,6 +74,7 @@ function love.draw()
   end
   
   love.graphics.draw(cookie1, cookieA.body:getX(), cookieA.body:getY())
+  love.graphics.draw(cookie1, cookieB.body:getX(), cookieB.body:getY())
   
   draw_scrollcanvas()
   
