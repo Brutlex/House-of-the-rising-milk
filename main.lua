@@ -103,8 +103,8 @@ function game:update(dt)
 end
 
 
-function love.draw()
-  
+
+
 function game:draw()
 
   for k,v in pairs(clouds) do
@@ -135,7 +135,5 @@ end
 function love.update(dt)
 end
 
-
 function love.draw()
-end
-
+end 
