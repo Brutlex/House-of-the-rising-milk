@@ -1,6 +1,7 @@
 local anim8 = require('lib/anim8')
 local mc = require('lib/middleclass')
 
+require('assets')
 require('cloud')
 require('cookie')
 require('scrollcanvas')
@@ -18,8 +19,7 @@ C = { --table for constants
 
 function love.load()
   
-  cloud1 = love.graphics.newImage("gfx/cloud1.png")
-  cookie1 = love.graphics.newImage("gfx/Cookie1.1.png")
+  load_assets()
 
   
   love.physics.setMeter(C.pixelpermeter)
