@@ -4,8 +4,6 @@ local class = require('lib/middleclass')
 Cookie = class('Cookie')
 
 function Cookie:initialize(x, y)
-  self.x = x
-  self.y = y
   self.body = love.physics.newBody(world, x, y, "dynamic")
   self.body:setFixedRotation(true)
   self.shape = love.physics.newCircleShape(40)

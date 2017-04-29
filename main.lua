@@ -14,7 +14,7 @@ C = { --table for constants
   H = love.graphics.getHeight(),
   }
 
--- DEBUG = require("mobdebug").start() -- start debugger for live-coding
+DEBUG = require("mobdebug").start() -- start debugger for live-coding
 -- DEBUG.on()
 -- DEBUG.off()
 
@@ -63,7 +63,7 @@ function love.draw()
   love.graphics.draw(cloud1, cloudA.x, cloudA.y)
   love.graphics.draw(cloud1, cloudB.x, cloudB.y)
   
-  love.graphics.draw(cookie1, cookieA.x, cookieA.y)
+  love.graphics.draw(cookie1, cookieA.body:getX(), cookieA.body:getY())
   
   draw_scrollcanvas()
   
