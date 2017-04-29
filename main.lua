@@ -30,8 +30,8 @@ function menu:update()
 end
 
 function menu:draw()
-  --love.graphics.print("Press Enter to continue", 10, 10)
   suit.draw()
+  draw_menu()
 end  
 
 function menu:keypressed(key, code)
