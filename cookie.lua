@@ -48,3 +48,31 @@ function Cookie:draw()
   topLeftX, topLeftY, bottomRightX, bottomRightY = self.sensorfixture:getBoundingBox()
   love.graphics.rectangle('line', self.sensorbody:getX(), self.sensorbody:getY(), bottomRightX - topLeftX, bottomRightY - topLeftY)
 end
+
+function beginContact(a, b, coll)
+  if(b:getUserData() == "cookie1") then
+    cookieA.contact = true
+    cookieA.image = cookieA.img.normal
+  end
+  if(b:getUserData() == "cookie2") then
+    cookieB.contact = true
+    cookieB.image = cookieB.img.normal
+  end 
+end
+
+function endContact(a, b, coll) 
+  if(b:getUserData() == "cookie1") then
+    cookieA.contact = false
+  end
+  if(b:getUserData() == "cookie2") then
+    cookieB.contact = false
+  end 
+end
+
+function preSolve(a, b, coll)
+  --not used
+end
+
+function postSolve(a, b, coll, normalimpulse, tangentimpulse)
+  --not used
+end
