@@ -9,6 +9,7 @@ require('cookie')
 require('scrollcanvas')
 require('world')
 require('menu')
+require('win')
 
 C = { --table for constants
   g = 9.81,
@@ -24,13 +25,13 @@ C = { --table for constants
 -- gamestate stuff
 menu = {}
 game = {}
+win = {}
 
 function menu:update()
   update_menu()
 end
 
 function menu:draw()
-  suit.draw()
   draw_menu()
 end  
 
@@ -42,17 +43,20 @@ function menu:keypressed(key, code)
 end
 
 function game:enter()
-
   love.physics.setMeter(C.pixelpermeter)
 
   world = love.physics.newWorld(0, C.g*love.physics.getMeter(), true)
   world:setCallbacks(beginContact, endContact, preSolve, postSolve)
-  
+
   borderL()
   borderR()
+
   borderU()
   
+
   --Test wolken --
+  scrollcanvas = SC:new()
+  
   clouds = {}
   table.insert(clouds, Cloud:new(C.W/2+275, C.H/2+200, 'a', cloud2))
   table.insert(clouds, Cloud:new(C.W/2-50, C.H/2-100, 'a', cloud1))
@@ -67,7 +71,7 @@ function game:enter()
   -- CookieSpieler --
   cookieA = Cookie:new(C.W/2+250, C.H/2+200, "cookie1", Cookie1)
   cookieB = Cookie:new(C.W/2-350, C.H/2+150,"cookie2", Cookie2)
-  
+
 end
 
 function game:update(dt)
@@ -104,6 +108,11 @@ function game:update(dt)
     end 
   end
 
+  -- DEBUG
+  if love.keyboard.isDown("escape") then
+    Gamestate.switch(win)
+  end
+
   scrollcanvas:update(dt)
 end
 
@@ -111,7 +120,6 @@ end
 
 
 function game:draw()
-
   for k,v in pairs(clouds) do
     v:draw()
   end
@@ -126,8 +134,6 @@ end
 
 function love.load()
 
-  scrollcanvas = SC:new()
-
   load_assets()
 
   love.graphics.setBackgroundColor(177, 215, 231)
@@ -136,9 +142,18 @@ function love.load()
   Gamestate.switch(menu)
 end
 
+function win:update()
+  update_win()
+end
+
+function win:draw()  
+  draw_win()
+end  
+
 
 function love.update(dt)
 end
 
 function love.draw()
+  suit.draw()
 end 

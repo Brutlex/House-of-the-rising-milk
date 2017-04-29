@@ -27,6 +27,6 @@ function borderU()
   border.shape = love.physics.newRectangleShape(C.W, 0)
   border.fixture = love.physics.newFixture(border.body, border.shape)
   border.fixture:setRestitution(0.5)
-  border.sensorfixture:setUserData("end")
+  border.fixture:setUserData("end")
   
 end
