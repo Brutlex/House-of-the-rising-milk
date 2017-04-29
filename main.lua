@@ -31,6 +31,7 @@ function love.load()
   objects.cookie.body =  love.physics.newBody(world, C.W/2, C.H/2, "dynamic")
   objects.cookie.shape = love.physics.newCircleShape(40)
   objects.cookie.fixture = love.physics.newFixture(objects.cookie.body, objects.cookie.shape, 1)
+  objects.cookie.fixture:setRestitution(0.9)
 
   objects.cloud = {}
   objects.cloud.body =  love.physics.newBody(world, C.W/2, C.H/2)
@@ -44,20 +45,25 @@ end
  
 
 function love.update(dt)
-  
   world:update(dt)
-  if love.keyboard.isDown("right") then
-    objects.cookie.body:applyForce (400,0)
-  end 
-
+    
+  update_cookies(dt)
+  
+  update_scrollcanvas(dt)
+    
+  
 end
  
 
 function love.draw()
   
-  objects.cookie.fixture:setRestitution(0.9)love.graphics.draw(cookie1, objects.cookie.body:getX(), objects.cookie.body:getY())
-  objects.cookie.fixture:setRestitution(0.9)love.graphics.draw(cloud1, objects.cloud.body:getX(), objects.cloud.body:getY())
+  -- draw world
   love.graphics.rectangle("fill", 0, love.graphics.getHeight() - 100, love.graphics.getWidth(), 100)
-  love.graphics.draw(canvas1, 0, 0)
+  love.graphics.draw(cloud1, objects.cloud.body:getX(), objects.cloud.body:getY())
+  
+  draw_scrollcanvas()
+  
+  draw_cookies()
+
   
 end
