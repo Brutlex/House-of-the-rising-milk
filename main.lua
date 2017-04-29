@@ -18,18 +18,19 @@ C = { --table for constants
 -- DEBUG.on()
 -- DEBUG.off()
 
-local clouds = {}
-local scrollcanvas = SC:new()
+
 
 function love.load()
   
+  scrollcanvas = SC:new()
+  clouds = {}  
   load_assets()
   
   love.physics.setMeter(C.pixelpermeter)
   world = love.physics.newWorld(0, C.g*love.physics.getMeter(), true)
   
-  table.insert(clouds, Cloud:new(C.W/2, C.H/2))
-  table.insert(clouds, Cloud:new(C.W/2+100, C.H/2+100))
+  table.insert(clouds, Cloud:new(C.W/2, C.H/2, 'a'))
+  table.insert(clouds, Cloud:new(C.W/2+100, C.H/2+100, 'b'))
   
   cookieA = Cookie:new(C.W/2, C.H/2)
 
@@ -52,7 +53,7 @@ end
 
 function love.draw()
   
-  draw_world()
+  
   
   for k,v in pairs(clouds) do
     v:draw()
@@ -61,4 +62,6 @@ function love.draw()
   love.graphics.draw(cookie1, cookieA.body:getX(), cookieA.body:getY())
   
   scrollcanvas:draw()
+  
+  draw_world()
 end

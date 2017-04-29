@@ -5,14 +5,15 @@ SC = class('SC')
 
 function SC:initialize()
   self.dc = C.H -- offset between canvases
-  self.speed = 100
+  self.speed = 50
 
   self.cb = love.graphics.newCanvas(C.W, C.H)
-  self.cby = -C.H -- completely outside the screen
+  self.cby = -C.H -- start completely outside the screen
 
   self.ca = love.graphics.newCanvas(C.W, C.H)
-  self.cay = self.cby + self.dc
+  self.cay = self.cby + self.dc -- start at screen position
 
+--[[
   love.graphics.setCanvas(self.cb)
   love.graphics.clear()
   love.graphics.setColor(100, 100, 200)
@@ -25,6 +26,7 @@ function SC:initialize()
   
   love.graphics.setCanvas()
   love.graphics.setBlendMode("alpha")
+]]-- 
 end
 
 function SC:update(dt)
@@ -40,8 +42,9 @@ function SC:update(dt)
   self.cay = tcay
   self.cby = tcby
 
-  print("CAY: " .. self.cay)
-  print("CBY: " .. self.cby)
+  for k,v in pairs(clouds) do
+    v:update(dt)
+  end
 end
 
 function SC:draw()
