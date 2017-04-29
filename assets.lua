@@ -1,6 +1,7 @@
 
 function load_assets()
-  cloud1 = love.graphics.newImage("gfx/cloudMiddle.png")
+  
+  cloud1 = love.graphics.newImage("gfx/cloudMiddle1.png")
   cloud2 = love.graphics.newImage("gfx/cloudSmall.png")
   
   Cookie1 = {
