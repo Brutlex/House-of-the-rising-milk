@@ -5,6 +5,7 @@ require('assets')
 require('cloud')
 require('cookie')
 require('scrollcanvas')
+require('world')
 
 C = { --table for constants
   g = 9.81,
@@ -59,8 +60,8 @@ end
 
 function love.draw()
   
-  -- draw world
-  love.graphics.rectangle("fill", 0, love.graphics.getHeight() - 100, love.graphics.getWidth(), 100)
+  draw_world()
+  
   love.graphics.draw(cloud1, objects.cloud.body:getX(), objects.cloud.body:getY())
   
   draw_scrollcanvas()
