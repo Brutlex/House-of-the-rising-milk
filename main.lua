@@ -43,7 +43,6 @@ function menu:keypressed(key, code)
 end
 
 function game:enter()
-
   love.physics.setMeter(C.pixelpermeter)
 
   world = love.physics.newWorld(0, C.g*love.physics.getMeter(), true)
@@ -52,7 +51,11 @@ function game:enter()
   borderL()
   borderR()
 
+  borderU()
+  
+
   --Test wolken --
+  scrollcanvas = SC:new()
   
   clouds = {}
   table.insert(clouds, Cloud:new(C.W/2+275, C.H/2+200, 'a', cloud2))
@@ -130,7 +133,6 @@ function game:draw()
 end
 
 function love.load()
-  scrollcanvas = SC:new()
 
   load_assets()
 

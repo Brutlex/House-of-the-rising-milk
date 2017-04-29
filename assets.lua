@@ -22,12 +22,14 @@ function load_assets()
   jumpLand = love.graphics.newImage("gfx/CookieB_jumpLand.png"),
 }
 
-  -- buttons Cookie A
+  -- Menü Cookie A
+cookieAmenu = love.graphics.newImage("gfx/cookie_right_bigger.png")
 keyA = love.graphics.newImage("gfx/Keyboard_Black_A.png")
 keyD = love.graphics.newImage("gfx/Keyboard_Black_D.png")
 keyW = love.graphics.newImage("gfx/Keyboard_Black_W.png")
 
   -- buttons Cookie B
+cookiemenu = love.graphics.newImage("gfx/cookie_left_bigger.png")
 keyLeft = love.graphics.newImage("gfx/Keyboard_Black_Arrow_Left.png")
 keyRight = love.graphics.newImage("gfx/Keyboard_Black_Arrow_Right.png")
 keyUp = love.graphics.newImage("gfx/Keyboard_Black_Arrow_Up.png")
