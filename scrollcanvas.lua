@@ -5,7 +5,7 @@ SC = class('SC')
 
 function SC:initialize()
   self.dc = C.H -- offset between canvases
-  self.speed = 20
+  self.speed = 10
 
   self.cb = love.graphics.newCanvas(C.W, C.H)
   self.cby = -C.H -- start completely outside the screen
