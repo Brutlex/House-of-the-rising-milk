@@ -6,7 +6,7 @@ Cookie = class('Cookie')
 function Cookie:initialize(x, y, name, img)
   self.body = love.physics.newBody(world, x, y, "dynamic")
   self.body:setFixedRotation(true)
-  self.shape = love.physics.newCircleShape(20)
+  self.shape = love.physics.newCircleShape(40)
   self.fixture = love.physics.newFixture(self.body, self.shape,1)
   self.fixture:setRestitution(0.5)
   self.fixture:setUserData(name)
@@ -26,7 +26,7 @@ function Cookie:linksGehen()
   self.image = self.img.left
 end
 function Cookie:springen()
-  self.body:applyLinearImpulse(0, -30)
+  self.body:applyLinearImpulse(0, -300)
   self.image = self.img.jumpUp
 end
 function Cookie:draw()

@@ -28,12 +28,14 @@ function love.load()
   world = love.physics.newWorld(0, C.g*love.physics.getMeter(), true)
   world:setCallbacks(beginContact, endContact, preSolve, postSolve)
   
-  table.insert(clouds, Cloud:new(C.W/2, C.H/2))
+  --Test wolken --
   table.insert(clouds, Cloud:new(C.W/2+100, C.H/2+100))
-
+  table.insert(clouds, Cloud:new(C.W/2-100, C.H/2-100))
+  table.insert(clouds, Cloud:new(C.W/2-200, C.H/2+100))
+  table.insert(clouds, Cloud:new(C.W/2+100, C.H/2-300))
   
-  cookieA = Cookie:new(C.W/2, C.H/2, "cookie1", Cookie1)
-  
+  -- CookieSpieler --
+  cookieA = Cookie:new(C.W/2-100, C.H/2-100, "cookie1", Cookie1)
   cookieB = Cookie:new(C.W/2+100, C.H/2+100,"cookie2", Cookie2)
   
   

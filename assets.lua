@@ -12,8 +12,8 @@ function load_assets()
 
   Cookie2 = {
   normal = love.graphics.newImage("gfx/CookieB_front.png"),
-  left = love.graphics.newImage("gfx/CookieB_left.png"),
-  right = love.graphics.newImage("gfx/CookieB_right.png"),
+  left = love.graphics.newImage("gfx/CookieB_left1.png"),
+  right = love.graphics.newImage("gfx/CookieB_right1.png"),
   jumpUp = love.graphics.newImage("gfx/CookieB_jumpUp.png"),
   jumpLand = love.graphics.newImage("gfx/CookieB_jumpLand.png"),
   }
