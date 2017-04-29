@@ -47,9 +47,10 @@ function game:enter()
 
   world = love.physics.newWorld(0, C.g*love.physics.getMeter(), true)
   world:setCallbacks(beginContact, endContact, preSolve, postSolve)
-
-  border()
-
+  
+  borderL()
+  borderR()
+  
   --Test wolken --
   clouds = {}
   table.insert(clouds, Cloud:new(C.W/2+100, C.H/2+100, 'a'))
@@ -101,7 +102,11 @@ function game:update(dt)
   scrollcanvas:update(dt)
 end
 
+
+
+
 function game:draw()
+
   for k,v in pairs(clouds) do
     v:draw()
   end
@@ -130,7 +135,5 @@ end
 function love.update(dt)
 end
 
-
 function love.draw()
-end
-
+end 
