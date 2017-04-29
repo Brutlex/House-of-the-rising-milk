@@ -1,5 +1,6 @@
 
 function load_assets()
+  milch = love.graphics.newImage("gfx/Milch.png")
   
   cloud1 = love.graphics.newImage("gfx/cloudMiddle1.png")
   cloud2 = love.graphics.newImage("gfx/cloudSmall.png")

@@ -22,7 +22,7 @@ C = { --table for constants
 
 function love.load()
 
-  
+   
   scrollcanvas = SC:new()
   clouds = {}  
   load_assets()
@@ -32,6 +32,7 @@ function love.load()
   world = love.physics.newWorld(0, C.g*love.physics.getMeter(), true)
   world:setCallbacks(beginContact, endContact, preSolve, postSolve)
   
+  border()
   --Test wolken --
   table.insert(clouds, Cloud:new(C.W/2+100, C.H/2+100, 'a'))
   table.insert(clouds, Cloud:new(C.W/2-100, C.H/2-100, 'a'))
@@ -91,6 +92,7 @@ function love.draw()
   --love.graphics.draw(cookie2, cookieB.body:getX(), cookieB.body:getY())
   
   scrollcanvas:draw()
+  love.graphics.draw(milch, 0, 550)
   
 end
 
