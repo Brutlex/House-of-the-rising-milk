@@ -8,7 +8,7 @@ function Cloud:initialize(x, y, canvas)
   self.canvas = canvas -- 'a' or 'b'
   self.relY = y
   self.body = love.physics.newBody(world, x, y)
-  self.shape = love.physics.newRectangleShape(400,30)
+  self.shape = love.physics.newRectangleShape(370,30)
   self.fixture = love.physics.newFixture(self.body, self.shape, 100)
   self.fixture:setRestitution(0)
   self.fixture:setUserData("cloud")
