@@ -1,8 +1,12 @@
 local anim8 = require('lib/anim8')
 local mc = require('lib/middleclass')
 
+DEBUG = require("mobdebug").start() -- start debugger for live-coding
+-- DEBUG.on()
+-- DEBUG.off()
+
 function love.load()
-  --test
+  
   cloud1 = love.graphics.newImage("gfx/cloud1.png")
   cookie1 = love.graphics.newImage("gfx/Cookie1.1.png")
 
@@ -24,17 +28,17 @@ function love.load()
 
   canvas1 = love.graphics.newCanvas(love.graphics.getWidth(), love.graphics.getHeight() + 100)
 
-  -- comment
   love.graphics.setBackgroundColor(177, 215, 231)
 end
  
 
 function love.update(dt)
+  
   world:update(dt)
   if love.keyboard.isDown("right") then
     objects.cookie.body:applyForce (400,0)
   end 
-  
+
 end
  
 
@@ -42,7 +46,7 @@ function love.draw()
   
   objects.cookie.fixture:setRestitution(0.9)love.graphics.draw(cookie1, objects.cookie.body:getX(), objects.cookie.body:getY())
   objects.cookie.fixture:setRestitution(0.9)love.graphics.draw(cloud1, objects.cloud.body:getX(), objects.cloud.body:getY())
-  love.graphics.rectangle("fill", 0, love.graphics.getHeight() - 100, love.graphics.getWidth(), 100)
+  love.graphics.rectangle("fill", 0, love.graphics.getHeight() - 234, love.graphics.getWidth(), 100)
   love.graphics.draw(canvas1, 0, 0)
   
 end
