@@ -21,10 +21,6 @@ C = { --table for constants
 local clouds = {}
 
 function love.load()
-  
-  
-  text= ""  
-  
   load_assets()
 
   love.physics.setMeter(C.pixelpermeter)
@@ -50,6 +46,7 @@ end
 function love.update(dt)
   world:update(dt)
   
+  -- Bewegungen --
   if love.keyboard.isDown("right") then
      cookieA:rechtsGehen() 
   elseif love.keyboard.isDown("d") then
@@ -68,14 +65,10 @@ function love.update(dt)
     end 
   end
   
+  
     update_scrollcanvas(dt)
-   
-  if string.len(text) > 768 then    -- cleanup when 'text' gets too long
-    text = "" 
-  end
-end
- 
-
+    
+end 
 function love.draw()
   
   draw_world()
@@ -84,6 +77,7 @@ function love.draw()
     v:draw()
   end
   
+  --Cookies zeichnen--
   love.graphics.draw(cookie1, cookieA.body:getX(), cookieA.body:getY())
   love.graphics.draw(cookie1, cookieB.body:getX(), cookieB.body:getY())
   
@@ -93,9 +87,6 @@ function love.draw()
 end
 
 function beginContact(a, b, coll)
-  x,y = coll:getNormal()
-  text = text.."\n"..a:getUserData().." colliding with "..b:getUserData().." with a vector normal of: "..x..", "..y 
-    
   if(b:getUserData() == "CookieA") then
     cookieA.contact = true
   elseif(b:getUserData() == "CookieB") then
@@ -103,10 +94,7 @@ function beginContact(a, b, coll)
   end 
 end
  
-function endContact(a, b, coll)
-  x,y = coll:getNormal()
-  text = text.."\n"..a:getUserData().." end colliding with "..b:getUserData().." with a vector normal of: "..x..", "..y 
-  
+function endContact(a, b, coll) 
   if(b:getUserData() == "CookieA") then
     cookieA.contact = false
   elseif(b:getUserData() == "CookieB") then
@@ -115,9 +103,9 @@ function endContact(a, b, coll)
 end
  
 function preSolve(a, b, coll)
- 
+ --not used
 end
  
 function postSolve(a, b, coll, normalimpulse, tangentimpulse)
- 
+ --not used
 end

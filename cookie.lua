@@ -24,6 +24,3 @@ end
 function Cookie:springen()
   self.body:applyLinearImpulse(0, -30)
 end
---function draw_cookies()
- --- love.graphics.draw(cookie1, objects.cookie.body:getX(), objects.cookie.body:getY())
---end
