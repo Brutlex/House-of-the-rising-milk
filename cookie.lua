@@ -56,6 +56,7 @@ function beginContact(a, b, coll)
     cookieA.contact = true
     cookieA.image = cookieA.img.normal
     if(a:getUserData() == "end") then
+      Gamestate.switch(win)
       -- Cookie2 gewinnt , Spiel ende
     end
   end
@@ -63,6 +64,7 @@ function beginContact(a, b, coll)
     cookieB.contact = true
     cookieB.image = cookieB.img.normal
     if(a:getUserData() == "end") then
+      Gamestate.switch(win)
       -- Cookie1 gewinnt , Spiel ende
     end
   end 
