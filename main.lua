@@ -32,9 +32,9 @@ function love.load()
   table.insert(clouds, Cloud:new(C.W/2+100, C.H/2+100))
 
   
-  cookieA = Cookie:new(C.W/2, C.H/2, "CookieA")
+  cookieA = Cookie:new(C.W/2, C.H/2, "cookie1", Cookie1)
   
-  cookieB = Cookie:new(C.W/2+100, C.H/2+100,"CookieB")
+  cookieB = Cookie:new(C.W/2+100, C.H/2+100,"cookie2", Cookie2)
   
   
   canvas1 = love.graphics.newCanvas(C.W, C.H + 100)
@@ -77,27 +77,33 @@ function love.draw()
     v:draw()
   end
   
+  cookieA:draw()
+  cookieB:draw()
+
   --Cookies zeichnen--
-  love.graphics.draw(cookie1, cookieA.body:getX(), cookieA.body:getY())
-  love.graphics.draw(cookie1, cookieB.body:getX(), cookieB.body:getY())
+  --love.graphics.draw(cookieA.image, cookieA.body:getX(), cookieA.body:getY())
+  --love.graphics.draw(cookie2, cookieB.body:getX(), cookieB.body:getY())
   
   draw_scrollcanvas()
   
-  love.graphics.print(text, 10, 10)
 end
 
 function beginContact(a, b, coll)
-  if(b:getUserData() == "CookieA") then
+  if(b:getUserData() == "cookie1") then
     cookieA.contact = true
-  elseif(b:getUserData() == "CookieB") then
+    cookieA.image = cookieA.img.normal
+  end
+  if(b:getUserData() == "cookie2") then
     cookieB.contact = true
+    cookieB.image = cookieB.img.normal
   end 
 end
  
 function endContact(a, b, coll) 
-  if(b:getUserData() == "CookieA") then
+  if(b:getUserData() == "cookie1") then
     cookieA.contact = false
-  elseif(b:getUserData() == "CookieB") then
+  end
+  if(b:getUserData() == "cookie2") then
     cookieB.contact = false
   end 
 end
