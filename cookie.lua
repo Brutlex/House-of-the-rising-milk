@@ -11,12 +11,13 @@ function Cookie:initialize(x, y, name, img)
   self.shape = love.physics.newCircleShape(radius)
   self.fixture = love.physics.newFixture(self.body, self.shape, 0)
   self.fixture:setRestitution(0)
-  self.fixture:setUserData(name)
+  --self.fixture:setUserData(name)
   
   self.sensorbody = love.physics.newBody(world, x, y+radius*2, "dynamic")
   self.sensorshape = love.physics.newRectangleShape(radius*2, sensorheight)
   self.sensorfixture = love.physics.newFixture(self.sensorbody, self.sensorshape, 0)
-  self.sensorfixture:setSensor()
+  self.sensorfixture:setSensor(true)
+  self.sensorfixture:setUserData(name)
   
   self.joint = love.physics.newWeldJoint( self.body, self.sensorbody, x, y+radius*2, false)
   
@@ -37,7 +38,7 @@ function Cookie:linksGehen()
 end
 
 function Cookie:springen()
-  self.body:applyLinearImpulse(0, -300)
+  self.body:applyLinearImpulse(0, -200)
   self.image = self.img.jumpUp
 end
 
