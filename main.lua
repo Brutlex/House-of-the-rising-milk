@@ -14,9 +14,11 @@ C = { --table for constants
   H = love.graphics.getHeight(),
   }
 
--- DEBUG = require("mobdebug").start() -- start debugger for live-coding
+--DEBUG = require("mobdebug").start() -- start debugger for live-coding
 -- DEBUG.on()
 -- DEBUG.off()
+
+local clouds = {}
 
 function love.load()
   
@@ -26,16 +28,11 @@ function love.load()
   love.physics.setMeter(C.pixelpermeter)
   world = love.physics.newWorld(0, C.g*love.physics.getMeter(), true)
   
-  objects = {}
   
-  cloud = Cloud:new(C.W/2, C.H/2)
+  table.insert(clouds, Cloud:new(C.W/2, C.H/2))
+  table.insert(clouds, Cloud:new(C.W/2+100, C.H/2+100))
   
-  objects.cookie = {}
-  objects.cookie.body =  love.physics.newBody(world, C.W/2, C.H/2-20, "dynamic")
-  objects.cookie.body:setFixedRotation(true)
-  objects.cookie.shape = love.physics.newCircleShape(40)
-  objects.cookie.fixture = love.physics.newFixture(objects.cookie.body, objects.cookie.shape, 1)
-  objects.cookie.fixture:setRestitution(0.5)
+  cookieA = Cookie:new(C.W/2, C.H/2)
   
   canvas1 = love.graphics.newCanvas(C.W, C.H + 100)
 
@@ -45,7 +42,11 @@ end
 
 function love.update(dt)
   world:update(dt)
-    
+  
+  if love.keyboard.isDown("right") then
+    cookieA:rechtsGehen() 
+  end
+  
   update_cookies(dt)
   
   update_scrollcanvas(dt)
@@ -58,11 +59,12 @@ function love.draw()
   
   draw_world()
   
-  love.graphics.draw(cloud1, cloud.x, cloud.y)
+  for k,v in pairs(clouds) do
+    v:draw()
+  end
+  
+  love.graphics.draw(cookie1, cookieA.body:getX(), cookieA.body:getY())
   
   draw_scrollcanvas()
-  
-  draw_cookies()
-
   
 end
