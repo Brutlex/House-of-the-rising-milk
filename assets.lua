@@ -2,9 +2,9 @@
 function load_assets()
   milch = love.graphics.newImage("gfx/Milch.png")
   
-  cloud1 = love.graphics.newImage("gfx/cloudMiddle1.png")
-  cloud2 = love.graphics.newImage("gfx/cloudSmall.png")
-  cloud3 = love.graphics.newImage("gfx/cloudMiddle2.png")
+  cloudM1 = love.graphics.newImage("gfx/cloudMiddle1.png")
+  cloudS1 = love.graphics.newImage("gfx/cloudSmall.png")
+  cloudM2 = love.graphics.newImage("gfx/cloudMiddle2.png")
   
   Cookie1 = {
   normal = love.graphics.newImage("gfx/CookieA_front.png"),

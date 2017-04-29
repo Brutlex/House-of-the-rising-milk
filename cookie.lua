@@ -6,6 +6,7 @@ Cookie = class('Cookie')
 function Cookie:initialize(x, y, name, img)
   local radius = 40
   local sensorheight = 20
+  self.speed = 20
   self.body = love.physics.newBody(world, x, y, "dynamic")
   self.body:setFixedRotation(true)
   self.shape = love.physics.newCircleShape(radius)
@@ -28,17 +29,17 @@ end
 
 
 function Cookie:rechtsGehen()
-  self.body:applyLinearImpulse(10, 0)
+  self.body:applyLinearImpulse(self.speed, 0)
   self.image = self.img.right
 end
 
 function Cookie:linksGehen()
-  self.body:applyLinearImpulse(-10, 0)
+  self.body:applyLinearImpulse(-self.speed, 0)
   self.image = self.img.left
 end
 
 function Cookie:springen()
-  self.body:applyLinearImpulse(0, -100)
+  self.body:applyLinearImpulse(0, -self.speed*4)
   self.image = self.img.jumpUp
 end
 
@@ -57,7 +58,7 @@ function beginContact(a, b, coll)
     cookieA.image = cookieA.img.normal
     if(a:getUserData() == "end") then
       Gamestate.switch(win)
-      -- Cookie2 gewinnt , Spiel ende
+      --Cookie2 gewinnt , Spiel ende
     end
   end
   if(b:getUserData() == "cookie2") then
@@ -65,7 +66,7 @@ function beginContact(a, b, coll)
     cookieB.image = cookieB.img.normal
     if(a:getUserData() == "end") then
       Gamestate.switch(win)
-      -- Cookie1 gewinnt , Spiel ende
+      --Cookie1 gewinnt , Spiel ende
     end
   end 
 end

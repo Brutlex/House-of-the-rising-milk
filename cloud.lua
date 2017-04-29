@@ -10,11 +10,11 @@ function Cloud:initialize(x, y, canvas, form)
   self.Size = form
   self.body = love.physics.newBody(world, x, y)
     
-  if self.Size == cloud1 then
+  if self.Size == cloudM1 then
     self.shape = love.physics.newRectangleShape(387,80)
-  elseif self.Size == cloud2 then
+  elseif self.Size == cloudS1 then
     self.shape = love.physics.newRectangleShape(180,47)
-  elseif self.Size == cloud3 then
+  elseif self.Size == cloudM2 then
     self.shape = love.physics.newRectangleShape(362,70)
   end
   
@@ -35,4 +35,19 @@ end
 function Cloud:draw()
   love.graphics.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(),
       1, 1, self.image:getWidth()/2)
+end
+
+function place_clouds()
+  clouds = {}
+  table.insert(clouds, Cloud:new(C.W/2+350, 2100, 'a', cloudS1))
+  table.insert(clouds, Cloud:new(C.W/2-350, 2100, 'a', cloudS1))
+  table.insert(clouds, Cloud:new(C.W/2+150, 1800, 'a', cloudM2))
+  table.insert(clouds, Cloud:new(C.W/2-50, 1750, 'a', cloudM1))
+  
+  
+  
+  table.insert(clouds, Cloud:new(C.W/2+200, C.H/2+200, 'b', cloudM1))
+  table.insert(clouds, Cloud:new(C.W/2-50, C.H/2-100, 'b', cloudM2))
+  table.insert(clouds, Cloud:new(C.W/2-300, C.H/2+150, 'b', cloudS1))
+  table.insert(clouds, Cloud:new(C.W/2+150, C.H/2-350, 'b', cloudM2))
 end
