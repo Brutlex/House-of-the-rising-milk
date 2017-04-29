@@ -56,18 +56,7 @@ function game:enter()
   --Test wolken --
   scrollcanvas = SC:new()
   
-  clouds = {}
-  table.insert(clouds, Cloud:new(C.W/2+350, 2100, 'a', cloudS1))
-  table.insert(clouds, Cloud:new(C.W/2-350, 2100, 'a', cloudS1))
-  table.insert(clouds, Cloud:new(C.W/2+150, 1800, 'a', cloudM2))
-  table.insert(clouds, Cloud:new(C.W/2-50, 1750, 'a', cloudM1))
-  
-  
-  
-  table.insert(clouds, Cloud:new(C.W/2+200, C.H/2+200, 'b', cloudM1))
-  table.insert(clouds, Cloud:new(C.W/2-50, C.H/2-100, 'b', cloudM2))
-  table.insert(clouds, Cloud:new(C.W/2-300, C.H/2+150, 'b', cloudS1))
-  table.insert(clouds, Cloud:new(C.W/2+150, C.H/2-350, 'b', cloudM2))
+  place_clouds()
   
   -- CookieSpieler --
   cookieA = Cookie:new(C.W/2+350, 500, "cookie1", Cookie1)
