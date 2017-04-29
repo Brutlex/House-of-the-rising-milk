@@ -3,7 +3,7 @@
 function update_cookies(dt)
 
   if love.keyboard.isDown("right") then
-    objects.cookie.body:applyLinearImpulse(1, 0)
+    objects.cookie.body:applyLinearImpulse(10, 0)
   end
 end
 
