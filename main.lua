@@ -18,21 +18,25 @@ C = { --table for constants
 -- DEBUG.on()
 -- DEBUG.off()
 
-local clouds = {}
+
 
 function love.load()
-  load_assets()
 
+  
+  scrollcanvas = SC:new()
+  clouds = {}  
+  load_assets()
+  
   love.physics.setMeter(C.pixelpermeter)
   
   world = love.physics.newWorld(0, C.g*love.physics.getMeter(), true)
   world:setCallbacks(beginContact, endContact, preSolve, postSolve)
   
   --Test wolken --
-  table.insert(clouds, Cloud:new(C.W/2+100, C.H/2+100))
-  table.insert(clouds, Cloud:new(C.W/2-100, C.H/2-100))
-  table.insert(clouds, Cloud:new(C.W/2-200, C.H/2+100))
-  table.insert(clouds, Cloud:new(C.W/2+100, C.H/2-300))
+  table.insert(clouds, Cloud:new(C.W/2+100, C.H/2+100, 'a'))
+  table.insert(clouds, Cloud:new(C.W/2-100, C.H/2-100, 'a'))
+  table.insert(clouds, Cloud:new(C.W/2-200, C.H/2+100, 'a'))
+  table.insert(clouds, Cloud:new(C.W/2+100, C.H/2-300, 'a'))
   
   -- CookieSpieler --
   cookieA = Cookie:new(C.W/2-100, C.H/2-100, "cookie1", Cookie1)
@@ -67,13 +71,13 @@ function love.update(dt)
     end 
   end
   
-  
-    update_scrollcanvas(dt)
-    
-end 
+  scrollcanvas:update(dt)
+end
+ 
+
 function love.draw()
   
-  draw_world()
+  
   
   for k,v in pairs(clouds) do
     v:draw()
@@ -86,7 +90,7 @@ function love.draw()
   --love.graphics.draw(cookieA.image, cookieA.body:getX(), cookieA.body:getY())
   --love.graphics.draw(cookie2, cookieB.body:getX(), cookieB.body:getY())
   
-  draw_scrollcanvas()
+  scrollcanvas:draw()
   
 end
 
