@@ -14,7 +14,7 @@ C = { --table for constants
   H = love.graphics.getHeight(),
   }
 
-DEBUG = require("mobdebug").start() -- start debugger for live-coding
+--DEBUG = require("mobdebug").start() -- start debugger for live-coding
 -- DEBUG.on()
 -- DEBUG.off()
 
@@ -44,7 +44,6 @@ function love.update(dt)
   world:update(dt)
   
   if love.keyboard.isDown("right") then
-    --cookieA.body:applyLinearImpulse(10, 0)
     cookieA:rechtsGehen() 
   end
   
@@ -60,15 +59,12 @@ function love.draw()
   
   draw_world()
   
-  for k, v in pairs(clouds) do
-    love.graphics.draw(cloud1, v.x, v.y)
+  for k,v in pairs(clouds) do
+    v:draw()
   end
   
   love.graphics.draw(cookie1, cookieA.body:getX(), cookieA.body:getY())
   
   draw_scrollcanvas()
-  
-  --draw_cookies()
-
   
 end
