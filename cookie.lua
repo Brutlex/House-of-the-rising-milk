@@ -6,16 +6,16 @@ Cookie = class('Cookie')
 function Cookie:initialize(x, y, name, img)
   local radius = 40
   local sensorheight = 20
-  self.speed = 20
+  self.speed = 30
   self.body = love.physics.newBody(world, x, y, "dynamic")
   self.body:setFixedRotation(true)
   self.shape = love.physics.newCircleShape(radius)
   self.fixture = love.physics.newFixture(self.body, self.shape, 0)
   self.fixture:setRestitution(0)
-  --self.fixture:setUserData(name)
+  self.fixture:setFriction(1)
   
-  self.sensorbody = love.physics.newBody(world, x, y+radius*2, "dynamic")
-  self.sensorshape = love.physics.newRectangleShape(radius*2, sensorheight)
+  self.sensorbody = love.physics.newBody(world, x+radius/2, y+radius*2, "dynamic")
+  self.sensorshape = love.physics.newRectangleShape(radius/2, sensorheight)
   self.sensorfixture = love.physics.newFixture(self.sensorbody, self.sensorshape, 0)
   self.sensorfixture:setSensor(true)
   self.sensorfixture:setUserData(name)
@@ -58,7 +58,7 @@ function beginContact(a, b, coll)
     cookieA.image = cookieA.img.normal
     if(a:getUserData() == "end") then
       Gamestate.switch(win)
-      --Cookie2 gewinnt , Spiel ende
+      --Cookie1 gewinnt , Spiel ende
     end
   end
   if(b:getUserData() == "cookie2") then
@@ -66,7 +66,7 @@ function beginContact(a, b, coll)
     cookieB.image = cookieB.img.normal
     if(a:getUserData() == "end") then
       Gamestate.switch(win)
-      --Cookie1 gewinnt , Spiel ende
+      --Cookie2 gewinnt , Spiel ende
     end
   end 
 end

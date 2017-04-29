@@ -23,19 +23,20 @@ function load_assets()
 }
 
   -- Menü Cookie A
-cookieAmenu = love.graphics.newImage("gfx/cookie_right_bigger.png")
+cookieAmenu = love.graphics.newImage("gfx/CookieA_right_300.png")
 keyA = love.graphics.newImage("gfx/Keyboard_Black_A.png")
 keyD = love.graphics.newImage("gfx/Keyboard_Black_D.png")
 keyW = love.graphics.newImage("gfx/Keyboard_Black_W.png")
 
   -- buttons Cookie B
-cookieBmenu = love.graphics.newImage("gfx/cookie_left_bigger.png")
+cookieBmenu = love.graphics.newImage("gfx/CookieB_left_300.png")
 keyLeft = love.graphics.newImage("gfx/Keyboard_Black_Arrow_Left.png")
 keyRight = love.graphics.newImage("gfx/Keyboard_Black_Arrow_Right.png")
 keyUp = love.graphics.newImage("gfx/Keyboard_Black_Arrow_Up.png")
   
   -- GUI
-  buttonFont = love.graphics.newFont(30)
+  buttonFont = love.graphics.newFont(70)
+  bigFont = love.graphics.newFont(100)
   
   -- musik
   music = love.audio.newSource('snd/CookiesNMilk.mp3', 'stream')
