@@ -18,6 +18,8 @@ DEBUG = require("mobdebug").start() -- start debugger for live-coding
 -- DEBUG.on()
 -- DEBUG.off()
 
+local clouds = {}
+
 function love.load()
   
   load_assets()
@@ -26,13 +28,11 @@ function love.load()
   love.physics.setMeter(C.pixelpermeter)
   world = love.physics.newWorld(0, C.g*love.physics.getMeter(), true)
   
-  objects = {}
   
-  cloudA = Cloud:new(C.W/2, C.H/2)
-  cloudB = Cloud:new(C.W/2+10, C.H/2+10)
+  table.insert(clouds, Cloud:new(C.W/2, C.H/2))
+  table.insert(clouds, Cloud:new(C.W/2+100, C.H/2+100))
   
   cookieA = Cookie:new(C.W/2, C.H/2)
-  
   
   canvas1 = love.graphics.newCanvas(C.W, C.H + 100)
 
@@ -60,8 +60,9 @@ function love.draw()
   
   draw_world()
   
-  love.graphics.draw(cloud1, cloudA.x, cloudA.y)
-  love.graphics.draw(cloud1, cloudB.x, cloudB.y)
+  for k, v in pairs(clouds) do
+    love.graphics.draw(cloud1, v.x, v.y)
+  end
   
   love.graphics.draw(cookie1, cookieA.body:getX(), cookieA.body:getY())
   
