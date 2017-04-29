@@ -9,6 +9,7 @@ function Cloud:initialize(x, y)
   self.shape = love.physics.newRectangleShape(150, 0)
   self.fixture = love.physics.newFixture(self.body, self.shape)
   self.fixture:setRestitution(0.5)
+  self.fixture:setUserData("cloud")
 end
 
 function Cloud:draw()
