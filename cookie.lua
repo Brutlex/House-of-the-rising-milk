@@ -43,10 +43,12 @@ function Cookie:springen()
 end
 
 function Cookie:draw()
-  love.graphics.draw(self.image, self.body:getX(), self.body:getY())
+  --wrong position
+  --topLeftX, topLeftY, bottomRightX, bottomRightY = self.sensorfixture:getBoundingBox()
+  --love.graphics.rectangle('line', self.sensorbody:getX(), self.sensorbody:getY(), bottomRightX - topLeftX, bottomRightY - topLeftY)
   
-  topLeftX, topLeftY, bottomRightX, bottomRightY = self.sensorfixture:getBoundingBox()
-  love.graphics.rectangle('line', self.sensorbody:getX(), self.sensorbody:getY(), bottomRightX - topLeftX, bottomRightY - topLeftY)
+  love.graphics.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(),
+      1, 1, self.image:getWidth()/2)
 end
 
 function beginContact(a, b, coll)
