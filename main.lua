@@ -10,6 +10,7 @@ require('scrollcanvas')
 require('world')
 require('menu')
 require('win')
+require('credits')
 
 C = { --table for constants
   g = 9.81,
@@ -26,6 +27,7 @@ DEBUG = require("mobdebug").start() -- start debugger for live-coding
 menu = {}
 game = {}
 win = {}
+credits = {}
 
 function menu:enter()
   music:play()
@@ -144,6 +146,14 @@ end
 
 function win:draw()  
   draw_win()
+end  
+
+function credits:update()
+  update_credits()
+end
+
+function credits:draw()  
+  draw_credits()
 end  
 
 

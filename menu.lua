@@ -3,9 +3,11 @@
 function update_menu()
   
   local bw, bh = 300, 100
-  local state = suit.Button("FIGHT!", {font = buttonFont}, C.W/2-bw/2,370, bw,bw)
+  local state = suit.Button("FIGHT!", {font = buttonFont}, C.W/2-bw/2,370, bw,bw-50)
+  local credits_state = suit.Button("CREDITS", {font = buttonFont}, C.W/2-bw/2,630, bw,bh)
   
   if state.hit then Gamestate.switch(game) end
+  if credits_state.hit then Gamestate.switch(credits) end
 end
 
 function draw_menu()

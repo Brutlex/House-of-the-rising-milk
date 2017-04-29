@@ -35,7 +35,7 @@ keyRight = love.graphics.newImage("gfx/Keyboard_Black_Arrow_Right.png")
 keyUp = love.graphics.newImage("gfx/Keyboard_Black_Arrow_Up.png")
   
   -- GUI
-  buttonFont = love.graphics.newFont(70)
+  buttonFont = love.graphics.newFont(60)
   bigFont = love.graphics.newFont(100)
   
   -- musik
