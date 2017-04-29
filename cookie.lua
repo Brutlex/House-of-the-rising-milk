@@ -38,13 +38,43 @@ function Cookie:linksGehen()
 end
 
 function Cookie:springen()
-  self.body:applyLinearImpulse(0, -200)
+  self.body:applyLinearImpulse(0, -100)
   self.image = self.img.jumpUp
 end
 
 function Cookie:draw()
-  love.graphics.draw(self.image, self.body:getX(), self.body:getY())
+  --wrong position
+  --topLeftX, topLeftY, bottomRightX, bottomRightY = self.sensorfixture:getBoundingBox()
+  --love.graphics.rectangle('line', self.sensorbody:getX(), self.sensorbody:getY(), bottomRightX - topLeftX, bottomRightY - topLeftY)
   
-  topLeftX, topLeftY, bottomRightX, bottomRightY = self.sensorfixture:getBoundingBox()
-  love.graphics.rectangle('line', self.sensorbody:getX(), self.sensorbody:getY(), bottomRightX - topLeftX, bottomRightY - topLeftY)
+  love.graphics.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(),
+      1, 1, self.image:getWidth()/2)
+end
+
+function beginContact(a, b, coll)
+  if(b:getUserData() == "cookie1") then
+    cookieA.contact = true
+    cookieA.image = cookieA.img.normal
+  end
+  if(b:getUserData() == "cookie2") then
+    cookieB.contact = true
+    cookieB.image = cookieB.img.normal
+  end 
+end
+
+function endContact(a, b, coll) 
+  if(b:getUserData() == "cookie1") then
+    cookieA.contact = false
+  end
+  if(b:getUserData() == "cookie2") then
+    cookieB.contact = false
+  end 
+end
+
+function preSolve(a, b, coll)
+  --not used
+end
+
+function postSolve(a, b, coll, normalimpulse, tangentimpulse)
+  --not used
 end

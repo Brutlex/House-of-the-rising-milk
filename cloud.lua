@@ -9,6 +9,7 @@ function Cloud:initialize(x, y, canvas, form)
   self.relY = y
   self.Size = form
   self.body = love.physics.newBody(world, x, y)
+<<<<<<< HEAD
   
   
   if self.Size == cloud1 then
@@ -20,6 +21,9 @@ function Cloud:initialize(x, y, canvas, form)
   end
   
   
+=======
+  self.shape = love.physics.newRectangleShape(370,30)
+>>>>>>> a564762bbc7eb4c5bf942b54894b5523db30a585
   self.fixture = love.physics.newFixture(self.body, self.shape, 100)
   self.fixture:setRestitution(0)
   self.fixture:setUserData("cloud")
