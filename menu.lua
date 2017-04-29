@@ -13,15 +13,15 @@ end
 
 function draw_menu()
   -- cookie A
-  love.graphics.draw(Cookie1.normal, 770, 400, 0, 1)
+  love.graphics.draw(Cookie1.normal, C.W-200-80, 400, 0, 1)
   love.graphics.draw(keyLeft, 700, 300)
   love.graphics.draw(keyRight, 800, 300)
   love.graphics.draw(keyUp, 750, 200)
   
   -- cookie A
-  love.graphics.draw(Cookie2.normal, 770, 400, 0, 1)
-  love.graphics.draw(keyA, 700, 300)
-  love.graphics.draw(keyD, 800, 300)
-  love.graphics.draw(keyW, 750, 200)
+  love.graphics.draw(Cookie2.normal, 200, 400, 0, 1)
+  love.graphics.draw(keyA, 100, 300)
+  love.graphics.draw(keyD, 200, 300)
+  love.graphics.draw(keyW, 150, 200)
 
 end
