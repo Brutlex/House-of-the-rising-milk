@@ -52,7 +52,8 @@ function game:enter()
   borderR()
   
   --Test wolken --
-<<<<<<< HEAD
+  
+  clouds = {}
   table.insert(clouds, Cloud:new(C.W/2+275, C.H/2+200, 'a', cloud2))
   table.insert(clouds, Cloud:new(C.W/2-50, C.H/2-100, 'a', cloud1))
   table.insert(clouds, Cloud:new(C.W/2-300, C.H/2+150, 'a', cloud2))
@@ -69,18 +70,6 @@ function game:enter()
   
   
   canvas1 = love.graphics.newCanvas(C.W, C.H + 100)
-=======
-  clouds = {}
-  table.insert(clouds, Cloud:new(C.W/2+100, C.H/2+100, 'a'))
-  table.insert(clouds, Cloud:new(C.W/2-100, C.H/2-100, 'a'))
-  table.insert(clouds, Cloud:new(C.W/2-200, C.H/2+100, 'a'))
-  table.insert(clouds, Cloud:new(C.W/2+100, C.H/2-300, 'a'))
-
-  -- CookieSpieler --
-  cookieA = Cookie:new(C.W/2-100, C.H/2-400, "cookie1", Cookie1)
-  cookieB = Cookie:new(C.W/2+100, C.H/2+100,"cookie2", Cookie2)
->>>>>>> a564762bbc7eb4c5bf942b54894b5523db30a585
-
 
 end
 
