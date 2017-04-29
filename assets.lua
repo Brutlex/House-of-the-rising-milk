@@ -36,4 +36,8 @@ keyUp = love.graphics.newImage("gfx/Keyboard_Black_Arrow_Up.png")
   
   -- GUI
   buttonFont = love.graphics.newFont(30)
+  
+  -- musik
+  music = love.audio.newSource('snd/CookiesNMilk.mp3', 'stream')
+  music:setLooping()
 end

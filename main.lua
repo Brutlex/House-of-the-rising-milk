@@ -27,6 +27,10 @@ menu = {}
 game = {}
 win = {}
 
+function menu:enter()
+  music:play()
+end
+
 function menu:update()
   update_menu()
 end
