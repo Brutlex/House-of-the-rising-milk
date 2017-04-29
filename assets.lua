@@ -37,6 +37,7 @@ keyUp = love.graphics.newImage("gfx/Keyboard_Black_Arrow_Up.png")
   -- GUI
   buttonFont = love.graphics.newFont(60)
   bigFont = love.graphics.newFont(100)
+  smallFont = love.graphics.newFont(20)
   
   -- musik
   music = love.audio.newSource('snd/CookiesNMilk.mp3', 'stream')

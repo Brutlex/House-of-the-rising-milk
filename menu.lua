@@ -27,4 +27,6 @@ function draw_menu()
   love.graphics.draw(keyD, 200, C.H-500)
   love.graphics.draw(keyW, 150, C.H-600)
 
+  love.graphics.setFont(smallFont)
+  love.graphics.print("KLUJAM 2017 Entry", 410, C.H-30)
 end
