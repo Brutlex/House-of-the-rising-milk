@@ -28,7 +28,7 @@ function love.load()
   
   objects = {}
   
-  cloud = Cloud:new()
+  cloud = Cloud:new(C.W/2, C.H/2)
   
   objects.cookie = {}
   objects.cookie.body =  love.physics.newBody(world, C.W/2, C.H/2-20, "dynamic")
@@ -58,7 +58,7 @@ function love.draw()
   
   draw_world()
   
-  love.graphics.draw(cloud1, objects.cloud.body:getX(), objects.cloud.body:getY())
+  love.graphics.draw(cloud1, cloud.x, cloud.y)
   
   draw_scrollcanvas()
   
