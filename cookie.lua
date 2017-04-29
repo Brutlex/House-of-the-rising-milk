@@ -56,16 +56,16 @@ function beginContact(a, b, coll)
     cookieA.contact = true
     cookieA.image = cookieA.img.normal
     if(a:getUserData() == "end") then
-      --Gamestate.switch(win)
-      Cookie2 gewinnt , Spiel ende
+      Gamestate.switch(win)
+      --Cookie2 gewinnt , Spiel ende
     end
   end
   if(b:getUserData() == "cookie2") then
     cookieB.contact = true
     cookieB.image = cookieB.img.normal
     if(a:getUserData() == "end") then
-      --Gamestate.switch(win)
-      Cookie1 gewinnt , Spiel ende
+      Gamestate.switch(win)
+      --Cookie1 gewinnt , Spiel ende
     end
   end 
 end
