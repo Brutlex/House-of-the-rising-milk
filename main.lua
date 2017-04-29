@@ -43,7 +43,6 @@ function menu:keypressed(key, code)
 end
 
 function game:enter()
-
   love.physics.setMeter(C.pixelpermeter)
 
   world = love.physics.newWorld(0, C.g*love.physics.getMeter(), true)
@@ -53,6 +52,7 @@ function game:enter()
   borderR()
 
   --Test wolken --
+  scrollcanvas = SC:new()
   
   clouds = {}
   table.insert(clouds, Cloud:new(C.W/2+275, C.H/2+200, 'a', cloud2))
@@ -68,10 +68,6 @@ function game:enter()
   -- CookieSpieler --
   cookieA = Cookie:new(C.W/2+250, C.H/2+200, "cookie1", Cookie1)
   cookieB = Cookie:new(C.W/2-350, C.H/2+150,"cookie2", Cookie2)
-  
-  
-  canvas1 = love.graphics.newCanvas(C.W, C.H + 100)
-
 end
 
 function game:update(dt)
@@ -133,7 +129,6 @@ function game:draw()
 end
 
 function love.load()
-  scrollcanvas = SC:new()
 
   load_assets()
 
