@@ -19,22 +19,19 @@ C = { --table for constants
 -- DEBUG.off()
 
 local clouds = {}
+local scrollcanvas = SC:new()
 
 function love.load()
   
   load_assets()
-
   
   love.physics.setMeter(C.pixelpermeter)
   world = love.physics.newWorld(0, C.g*love.physics.getMeter(), true)
-  
   
   table.insert(clouds, Cloud:new(C.W/2, C.H/2))
   table.insert(clouds, Cloud:new(C.W/2+100, C.H/2+100))
   
   cookieA = Cookie:new(C.W/2, C.H/2)
-  
-  canvas1 = love.graphics.newCanvas(C.W, C.H + 100)
 
   love.graphics.setBackgroundColor(177, 215, 231)
 end
@@ -49,9 +46,7 @@ function love.update(dt)
   
   update_cookies(dt)
   
-  update_scrollcanvas(dt)
-    
-  
+  scrollcanvas:update(dt)
 end
  
 
@@ -65,6 +60,5 @@ function love.draw()
   
   love.graphics.draw(cookie1, cookieA.body:getX(), cookieA.body:getY())
   
-  draw_scrollcanvas()
-  
+  scrollcanvas:draw()
 end
