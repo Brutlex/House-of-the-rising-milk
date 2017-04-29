@@ -47,9 +47,9 @@ function game:enter()
 
   world = love.physics.newWorld(0, C.g*love.physics.getMeter(), true)
   world:setCallbacks(beginContact, endContact, preSolve, postSolve)
-  
+
   border()
-  
+
   --Test wolken --
   clouds = {}
   table.insert(clouds, Cloud:new(C.W/2+100, C.H/2+100, 'a'))
@@ -68,19 +68,31 @@ function game:update(dt)
   world:update(dt)
 
   -- Bewegungen --
+  -- cookie A
+  if love.keyboard.isDown("left") then
+    cookieA:linksGehen()
+  end
+
   if love.keyboard.isDown("right") then
-    cookieA:rechtsGehen() 
-  elseif love.keyboard.isDown("d") then
-    cookieB:rechtsGehen()
-  elseif love.keyboard.isDown("left") then
-    cookieA:linksGehen() 
-  elseif love.keyboard.isDown("a") then
-    cookieB:linksGehen()
-  elseif love.keyboard.isDown("up") then
+    cookieA:rechtsGehen()
+  end
+
+  if love.keyboard.isDown("up") then
     if cookieA.contact then
       cookieA:springen() 
     end
-  elseif love.keyboard.isDown("w") then
+  end
+
+  -- cookie B
+  if love.keyboard.isDown("a") then
+    cookieB:linksGehen()
+  end
+
+  if love.keyboard.isDown("d") then
+    cookieB:rechtsGehen()
+  end
+
+  if love.keyboard.isDown("w") then
     if cookieB.contact then
       cookieB:springen()
     end 
