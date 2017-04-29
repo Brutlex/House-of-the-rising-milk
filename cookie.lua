@@ -44,6 +44,7 @@ end
 
 function Cookie:draw()
   love.graphics.draw(self.image, self.body:getX(), self.body:getY())
+  
   topLeftX, topLeftY, bottomRightX, bottomRightY = self.sensorfixture:getBoundingBox()
   love.graphics.rectangle('line', self.sensorbody:getX(), self.sensorbody:getY(), bottomRightX - topLeftX, bottomRightY - topLeftY)
 end
