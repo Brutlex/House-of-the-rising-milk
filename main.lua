@@ -47,6 +47,8 @@ function menu:keypressed(key, code)
 end
 
 function game:enter()
+  music:rewind()
+  music:play()
   love.physics.setMeter(C.pixelpermeter)
 
   world = love.physics.newWorld(0, C.g*love.physics.getMeter(), true)
