@@ -43,9 +43,11 @@ function SC:update(dt)
   self.cay = tcay
   self.cby = tcby
 
+
   for k,v in pairs(clouds) do
     v:update(dt)
   end
+
 end
 
 function SC:draw()
