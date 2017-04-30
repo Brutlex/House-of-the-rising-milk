@@ -48,7 +48,9 @@ cookieWinB = love.graphics.newImage("gfx/CookieB_front_win_300px.png")
   -- musik
   music = love.audio.newSource('snd/CookiesNMilk.mp3', 'stream')
   music:setLooping()
-  splash = love.audio.newSource('snd/splash3.wav', 'static')
-  hit = love.audio.newSource('snd/hit.wav', 'static')
-  jump = love.audio.newSource('snd/jaw2.wav', 'static')
+  splashA = love.audio.newSource('snd/splash3.wav', 'static')
+  splashB = love.audio.newSource('snd/splash3.wav', 'static')
+  --hit = love.audio.newSource('snd/hit.wav', 'static')
+  jumpA = love.audio.newSource('snd/jaw.wav', 'static')
+  jumpB = love.audio.newSource('snd/jaw.wav', 'static')
 end
