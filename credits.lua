@@ -13,7 +13,7 @@ function update_credits()
 end
 
 function draw_credits()
-  love.graphics.newFont()
+  love.graphics.setFont(buttonFont)
   local start = 50
   local yoffset = 100
   love.graphics.print("Demi Dauerer", 310, start)
