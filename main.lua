@@ -19,7 +19,7 @@ C = { --table for constants
   H = love.graphics.getHeight(),
 }
 
-DEBUG = require("mobdebug").start() -- start debugger for live-coding
+--DEBUG = require("mobdebug").start() -- start debugger for live-coding
 -- DEBUG.on()
 -- DEBUG.off()
 
