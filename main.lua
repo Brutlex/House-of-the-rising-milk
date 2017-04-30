@@ -18,7 +18,7 @@ C = { --table for constants
   H = love.graphics.getHeight(),
 }
 
---DEBUG = require("mobdebug").start() -- start debugger for live-coding
+DEBUG = require("mobdebug").start() -- start debugger for live-coding
 -- DEBUG.on()
 -- DEBUG.off()
 
@@ -66,8 +66,8 @@ function game:enter()
   place_clouds()
   
   -- CookieSpieler --
-  cookieA = Cookie:new(C.W/2+350, 500, "cookie1", Cookie1)
-  cookieB = Cookie:new(C.W/2-350, 500, "cookie2", Cookie2)
+  cookieA = Cookie:new(C.W/2+350, 400, "cookie1", Cookie1)
+  cookieB = Cookie:new(C.W/2-350, 400, "cookie2", Cookie2)
 
 end
 
@@ -103,11 +103,6 @@ function game:update(dt)
     if cookieB.contact then
       cookieB:springen()
     end 
-  end
-
-  -- DEBUG
-  if love.keyboard.isDown("escape") then
-    Gamestate.switch(win)
   end
 
   scrollcanvas:update(dt)

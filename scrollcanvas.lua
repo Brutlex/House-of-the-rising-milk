@@ -6,7 +6,7 @@ SC = class('SC')
 function SC:initialize()
   
   self.dc = C.H*3 -- offset between canvases
-  self.speed = 2
+  self.speed = 5
 
   self.cb = love.graphics.newCanvas(C.W, self.dc)
   self.cby = -(5*C.H) -- start completely outside the screen
@@ -43,9 +43,11 @@ function SC:update(dt)
   self.cay = tcay
   self.cby = tcby
 
+
   for k,v in pairs(clouds) do
     v:update(dt)
   end
+
 end
 
 function SC:draw()

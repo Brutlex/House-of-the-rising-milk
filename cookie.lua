@@ -4,16 +4,16 @@ local class = require('lib/middleclass')
 Cookie = class('Cookie')
 
 function Cookie:initialize(x, y, name, img)
-  local radius = 40
-  local sensorheight = 20
-  self.speed = 30
+  local radius = 35
+  local sensorheight = 5
+  self.speed = 25
   self.winner = false
   self.body = love.physics.newBody(world, x, y, "dynamic")
   self.body:setFixedRotation(true)
   self.shape = love.physics.newCircleShape(radius)
-  self.fixture = love.physics.newFixture(self.body, self.shape, 0)
+  self.fixture = love.physics.newFixture(self.body, self.shape, 1)
   self.fixture:setRestitution(0)
-  self.fixture:setFriction(1)
+  self.fixture:setFriction(0.4)
   
   self.sensorbody = love.physics.newBody(world, x+radius/2, y+radius*2, "dynamic")
   self.sensorshape = love.physics.newRectangleShape(radius/2, sensorheight)
