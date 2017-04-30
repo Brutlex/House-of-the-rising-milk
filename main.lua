@@ -117,14 +117,16 @@ end
 
 
 function game:draw()
+  scrollcanvas:draw()
+  
+  love.graphics.draw(background, 0, 0)
+  
   for k,v in pairs(clouds) do
     v:draw()
   end
 
   cookieA:draw()
   cookieB:draw()
-
-  scrollcanvas:draw()
 
   love.graphics.draw(milch, 0, 550)
 end
@@ -138,6 +140,7 @@ function love.load()
   Gamestate.registerEvents()
   Gamestate.switch(menu)
 end
+
 
 function win:update()
   update_win()
