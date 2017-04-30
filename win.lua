@@ -7,6 +7,10 @@ function update_win()
    winner = "Mrs Brown"
   end
   
+  if sound then
+    music:setVolume(0.8)
+  end 
+    
   if love.keyboard.isDown("m") then
       sound = false
       love.audio.pause()
