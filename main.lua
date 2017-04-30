@@ -1,4 +1,3 @@
-local anim8 = require('lib/anim8')
 local mc = require('lib/middleclass')
 Gamestate = require('lib/gamestate')
 suit = require('lib/SUIT')
