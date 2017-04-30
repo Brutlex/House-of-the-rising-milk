@@ -40,15 +40,34 @@ end
 
 function place_clouds()
   clouds = {}
-  table.insert(clouds, Cloud:new(C.W/2+350, 2100, 'a', cloudS1))
-  table.insert(clouds, Cloud:new(C.W/2-350, 2100, 'a', cloudS1))
-  table.insert(clouds, Cloud:new(C.W/2+150, 1800, 'a', cloudM2))
-  table.insert(clouds, Cloud:new(C.W/2-50, 1750, 'a', cloudM1))
+  table.insert(clouds, Cloud:new(C.W/2+340, 2000, 'a', cloudS1))
+  table.insert(clouds, Cloud:new(C.W/2-340, 2000, 'a', cloudS1))
+  table.insert(clouds, Cloud:new(C.W/2, 1800, 'a', cloudM1))
+  table.insert(clouds, Cloud:new(C.W/2-330, 1600, 'a', cloudM2))
+  table.insert(clouds, Cloud:new(C.W/2+315, 1500, 'a', cloudM1))
+  
+  table.insert(clouds, Cloud:new(C.W/2+50, 1350, 'a', cloudS1))
+  table.insert(clouds, Cloud:new(C.W/2-200, 1250, 'a', cloudS1))
+  table.insert(clouds, Cloud:new(C.W/2+340, 1250, 'a', cloudS1))
+  table.insert(clouds, Cloud:new(C.W/2-340, 1175, 'a', cloudS1))
+  table.insert(clouds, Cloud:new(C.W/2+100, 1000, 'a', cloudM1))
+  
+  table.insert(clouds, Cloud:new(C.W/2-300, 800, 'a', cloudM2))
+  table.insert(clouds, Cloud:new(C.W/2+420, 800, 'a', cloudS1))
+  table.insert(clouds, Cloud:new(C.W/2+200, 600, 'a', cloudM1))
+  table.insert(clouds, Cloud:new(C.W/2-340, 400, 'a', cloudM2))
+  table.insert(clouds, Cloud:new(C.W/2+280, 400, 'a', cloudS1))
+
+  table.insert(clouds, Cloud:new(C.W/2, 150, 'a', cloudM1))
+  table.insert(clouds, Cloud:new(C.W/2+340, 50, 'a', cloudS1))
+  table.insert(clouds, Cloud:new(C.W/2-340, 30, 'a', cloudS1))
+  
+  table.insert(clouds, Cloud:new(C.W/2-290, 2100, 'b', cloudS1))
   
   
   
   table.insert(clouds, Cloud:new(C.W/2+200, C.H/2+200, 'b', cloudM1))
   table.insert(clouds, Cloud:new(C.W/2-50, C.H/2-100, 'b', cloudM2))
   table.insert(clouds, Cloud:new(C.W/2-300, C.H/2+150, 'b', cloudS1))
-  table.insert(clouds, Cloud:new(C.W/2+150, C.H/2-350, 'b', cloudM2))
+  table.insert(clouds, Cloud:new(C.W/2150, C.H/2-350, 'b', cloudM2))
 end

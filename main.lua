@@ -73,8 +73,8 @@ function game:enter()
   place_clouds()
   
   -- CookieSpieler --
-  cookieA = Cookie:new(C.W/2+350, 500, "cookie1", Cookie1)
-  cookieB = Cookie:new(C.W/2-350, 500, "cookie2", Cookie2)
+  cookieA = Cookie:new(C.W/2+350, 400, "cookie1", Cookie1)
+  cookieB = Cookie:new(C.W/2-350, 400, "cookie2", Cookie2)
 
 end
 
