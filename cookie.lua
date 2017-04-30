@@ -50,7 +50,7 @@ function Cookie:linksGehen()
 end
 
 function Cookie:springen()
-  self.body:applyLinearImpulse(0, -self.speed*9)
+  self.body:applyLinearImpulse(0, -self.speed*8)
   self.image = self.img.jumpUp
 end
 
