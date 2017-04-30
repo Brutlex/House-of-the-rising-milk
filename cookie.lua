@@ -84,9 +84,11 @@ end
 function endContact(a, b, coll) 
   if(b:getUserData() == "cookie1") then
     cookieA.contact = false
+    jump:play()
   end
   if(b:getUserData() == "cookie2") then
     cookieB.contact = false
+    jump:play()
   end 
 end
 
