@@ -54,29 +54,42 @@ function Cookie:draw()
 end
 
 function beginContact(a, b, coll)
+  
   if(b:getUserData() == "cookie1") then
     cookieA.contact = true
     cookieA.image = cookieA.img.normal
     if(a:getUserData() == "end") then
       Gamestate.switch(win)
       cookieB.winner = true
-      splash:play()
+      
+      if sound then
+       splash:play()
+      end
       
     else 
-      hit:play()
+      
+      if sound then
+       hit:play()
+      end
     end
   end
+  
   if(b:getUserData() == "cookie2") then
-    cookieB.contact = true
-    cookieB.image = cookieB.img.normal
+   cookieB.contact = true
+   cookieB.image = cookieB.img.normal
+   
     if(a:getUserData() == "end") then
       Gamestate.switch(win)
       cookieA.winner = true
-      splash:play()
-      splash:setVolume(1) 
+      
+      if sound then
+       splash:play()
+      end 
       
     else 
-      hit:play()
+      if (sound) then
+       hit:play()
+      end
     end
   end 
 end
@@ -84,11 +97,17 @@ end
 function endContact(a, b, coll) 
   if(b:getUserData() == "cookie1") then
     cookieA.contact = false
+    
+    if (sound) then
     jump:play()
+    end
   end
   if(b:getUserData() == "cookie2") then
     cookieB.contact = false
+    
+    if (sound) then
     jump:play()
+    end
   end 
 end
 

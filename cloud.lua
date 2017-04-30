@@ -11,11 +11,11 @@ function Cloud:initialize(x, y, canvas, form)
   self.body = love.physics.newBody(world, x, y)
     
   if self.Size == cloudM1 then
-    self.shape = love.physics.newRectangleShape(387,80)
+    self.shape = love.physics.newRectangleShape(387,30)
   elseif self.Size == cloudS1 then
     self.shape = love.physics.newRectangleShape(180,47)
   elseif self.Size == cloudM2 then
-    self.shape = love.physics.newRectangleShape(362,70)
+    self.shape = love.physics.newRectangleShape(362,30)
   end
   
   self.fixture = love.physics.newFixture(self.body, self.shape, 100)

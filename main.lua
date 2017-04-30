@@ -27,9 +27,13 @@ menu = {}
 game = {}
 win = {}
 credits = {}
+sound = true 
+
 
 function menu:enter()
-  music:play()
+  if sound then
+   music:play() 
+  end
 end
 
 function menu:update()
@@ -48,9 +52,11 @@ function menu:keypressed(key, code)
 end
 
 function game:enter()
-  music:rewind()
-  music:play()
-  music:setVolume(0.2)
+  if sound then
+   music:rewind()
+   music:play()
+   music:setVolume(0.2)
+  end
   love.physics.setMeter(C.pixelpermeter)
 
   world = love.physics.newWorld(0, C.g*love.physics.getMeter(), true)
@@ -74,7 +80,21 @@ end
 
 function game:update(dt)
   world:update(dt)
-
+  
+  --Ton aus mit M
+  if love.keyboard.isDown("m") then
+      sound = false
+      love.audio.pause()
+  end
+  --Ton an mit L
+  if love.keyboard.isDown("l") then
+      sound = true
+      music:rewind()
+      music:play()
+      music:setVolume(0.2)
+  end
+  
+  
   -- Bewegungen --
   -- cookie A
   if love.keyboard.isDown("left") then
