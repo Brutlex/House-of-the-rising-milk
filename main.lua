@@ -12,7 +12,7 @@ require('win')
 require('credits')
 
 C = { --table for constants
-  g = 9.81,
+  g = 9.81*2,
   pixelpermeter = 64,
   W = love.graphics.getWidth(),
   H = love.graphics.getHeight(),

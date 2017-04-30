@@ -6,15 +6,18 @@ Cookie = class('Cookie')
 
 function Cookie:initialize(x, y, name, img)
   local radius = 35
-  local sensorheight = 10
-  self.speed = 25
+  local sensorheight = 5
+  self.speed = 30
   self.winner = false
+  self.maxvel = 300
   self.body = love.physics.newBody(world, x, y, "dynamic")
   self.body:setFixedRotation(true)
+  self.body:setLinearDamping(0.1)
+  
   self.shape = love.physics.newCircleShape(radius)
   self.fixture = love.physics.newFixture(self.body, self.shape, 1)
   self.fixture:setRestitution(1)
-  self.fixture:setFriction(0.4)
+  self.fixture:setFriction(0.1)
   
   self.sensorbody = love.physics.newBody(world, x+radius/2, y+radius*2, "dynamic")
   self.sensorshape = love.physics.newRectangleShape(radius/2, sensorheight)
@@ -31,17 +34,23 @@ end
 
 
 function Cookie:rechtsGehen()
-  self.body:applyLinearImpulse(self.speed, 0)
-  self.image = self.img.right
+  local x,y = self.body:getLinearVelocity()
+  if math.abs(x) < self.maxvel then
+    self.body:applyLinearImpulse(self.speed, 0)
+    self.image = self.img.right
+  end
 end
 
 function Cookie:linksGehen()
-  self.body:applyLinearImpulse(-self.speed, 0)
-  self.image = self.img.left
+  local x,y = self.body:getLinearVelocity()
+  if math.abs(x) < self.maxvel then
+    self.body:applyLinearImpulse(-self.speed, 0)
+    self.image = self.img.left
+  end
 end
 
 function Cookie:springen()
-  self.body:applyLinearImpulse(0, -self.speed*5)
+  self.body:applyLinearImpulse(0, -self.speed*8)
   self.image = self.img.jumpUp
 end
 
