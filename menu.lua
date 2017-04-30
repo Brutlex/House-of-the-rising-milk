@@ -12,18 +12,17 @@ function update_menu()
       love.audio.resume()
   end
   
-  local bw, bh = 300, 100
-  local state = suit.Button("FIGHT!", {font = buttonFont}, C.W/2-bw/2,370, bw,bw-50)
-  local credits_state = suit.Button("CREDITS", {font = buttonFont}, C.W/2-bw/2,630, bw,bh)
+  local bw, bh = 200, 80
+  local state = suit.Button("FIGHT!", {font = buttonFont}, C.W/2-bw/2,420, bw,bw-50)
+  local credits_state = suit.Button("CREDITS", {font = smallFont}, C.W/2-bw/2,600, bw,bh)
   
   if state.hit then Gamestate.switch(game) end
   if credits_state.hit then Gamestate.switch(credits) end
 end
 
 function draw_menu()
-  love.graphics.setFont(buttonFont)
-  love.graphics.print("Survival of the", 260, 50)
-  love.graphics.print("COOKIEST", 335, 150)
+    
+  love.graphics.draw(logoB, 300, 50)
   
   -- cookie A
   love.graphics.draw(cookieBmenu, 50, C.H-400, 0, 1)

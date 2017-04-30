@@ -19,8 +19,8 @@ C = { --table for constants
 }
 
 --DEBUG = require("mobdebug").start() -- start debugger for live-coding
--- DEBUG.on()
--- DEBUG.off()
+--DEBUG.on()
+--DEBUG.off()
 
 -- gamestate stuff
 menu = {}

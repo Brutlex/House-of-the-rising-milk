@@ -16,9 +16,9 @@ function draw_credits()
   love.graphics.setFont(buttonFont)
   local start = 50
   local yoffset = 100
-  love.graphics.print("Demi Dauerer", 310, start)
-  love.graphics.print("Stephanie Kühnl", 280, start+yoffset)
-  love.graphics.print("Bojan Miljevic", 310, start+yoffset*2)
-  love.graphics.print("Philipp Überbacher", 250, start+yoffset*3)
-  love.graphics.print("Music by Peter Hafele", 210, start+yoffset*4)
+  love.graphics.print("Demi Dauerer", 360, start)
+  love.graphics.print("Stephanie Kuehnl", 330, start+yoffset)
+  love.graphics.print("Bojan Miljevic", 360, start+yoffset*2)
+  love.graphics.print("Philipp Ueberbacher", 300, start+yoffset*3)
+  love.graphics.print("Music by Peter Hafele", 290, start+yoffset*4)
 end

@@ -2,6 +2,7 @@
 function load_assets()
   background = love.graphics.newImage("gfx/Background.png")
   milch = love.graphics.newImage("gfx/Milch.png")
+  logoB = love.graphics.newImage("gfx/Logo_Big.png")
   
   cloudM1 = love.graphics.newImage("gfx/cloudMiddle1.png")
   cloudS1 = love.graphics.newImage("gfx/cloudSmall.png")
@@ -23,6 +24,8 @@ function load_assets()
   jumpLand = love.graphics.newImage("gfx/CookieB_jumpLand.png"),
 }
 
+cookieWinA = love.graphics.newImage("gfx/CookieA_front_win_300px.png")
+cookieWinB = love.graphics.newImage("gfx/CookieB_front_win_300px.png")
   -- Menü Cookie A
 cookieAmenu = love.graphics.newImage("gfx/CookieA_right_300.png")
 keyA = love.graphics.newImage("gfx/Keyboard_Black_A.png")
@@ -36,9 +39,10 @@ keyRight = love.graphics.newImage("gfx/Keyboard_Black_Arrow_Right.png")
 keyUp = love.graphics.newImage("gfx/Keyboard_Black_Arrow_Up.png")
   
   -- GUI
-  buttonFont = love.graphics.newFont(60)
+  buttonFont = love.graphics.newFont("font/Life is goofy.ttf",70)
   bigFont = love.graphics.newFont(100)
-  smallFont = love.graphics.newFont(20)
+  smallFont = love.graphics.newFont(25)
+  winnerFont = love.graphics.newFont("font/Life is goofy.ttf",150)
   
   -- musik
   music = love.audio.newSource('snd/CookiesNMilk.mp3', 'stream')
