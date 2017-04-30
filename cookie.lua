@@ -16,7 +16,7 @@ function Cookie:initialize(x, y, name, img)
   
   self.shape = love.physics.newCircleShape(radius)
   self.fixture = love.physics.newFixture(self.body, self.shape, 1)
-  self.fixture:setRestitution(1)
+  self.fixture:setRestitution(0.5)
   self.fixture:setFriction(0.1)
   
   self.sensorbody = love.physics.newBody(world, x+radius/2, y+radius*2, "dynamic")
@@ -50,7 +50,7 @@ function Cookie:linksGehen()
 end
 
 function Cookie:springen()
-  self.body:applyLinearImpulse(0, -self.speed*8)
+  self.body:applyLinearImpulse(0, -self.speed*9)
   self.image = self.img.jumpUp
 end
 
