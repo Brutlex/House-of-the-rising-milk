@@ -6,14 +6,14 @@ Cookie = class('Cookie')
 
 function Cookie:initialize(x, y, name, img)
   local radius = 35
-  local sensorheight = 5
+  local sensorheight = 10
   self.speed = 25
   self.winner = false
   self.body = love.physics.newBody(world, x, y, "dynamic")
   self.body:setFixedRotation(true)
   self.shape = love.physics.newCircleShape(radius)
   self.fixture = love.physics.newFixture(self.body, self.shape, 1)
-  self.fixture:setRestitution(0)
+  self.fixture:setRestitution(1)
   self.fixture:setFriction(0.4)
   
   self.sensorbody = love.physics.newBody(world, x+radius/2, y+radius*2, "dynamic")
@@ -41,7 +41,7 @@ function Cookie:linksGehen()
 end
 
 function Cookie:springen()
-  self.body:applyLinearImpulse(0, -self.speed*4)
+  self.body:applyLinearImpulse(0, -self.speed*5)
   self.image = self.img.jumpUp
 end
 

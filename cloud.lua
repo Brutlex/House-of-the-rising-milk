@@ -24,7 +24,7 @@ function Cloud:initialize(x, y, canvas, form)
 ]]--
   self.fixture = love.physics.newFixture(self.body, self.shape)
   self.fixture:setFriction(0.3)
-  self.fixture:setRestitution(0.5)
+  self.fixture:setRestitution(1)
   self.fixture:setUserData("cloud")
 end
 

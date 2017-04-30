@@ -55,9 +55,9 @@ end
 
 function game:enter()
   if sound then
-   music:rewind()
-   music:play()
-   music:setVolume(0.4)
+    music:setVolume(0.4)
+    music:rewind()
+    music:play()
   end
   love.physics.setMeter(C.pixelpermeter)
 
@@ -91,9 +91,10 @@ function game:update(dt)
   --Ton an mit L
   if love.keyboard.isDown("l") then
       sound = true
+            music:setVolume(0.4)
+
       music:rewind()
       music:play()
-      music:setVolume(0.4)
   end
   
   
