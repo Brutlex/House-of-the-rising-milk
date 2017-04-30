@@ -27,11 +27,13 @@ function Cloud:initialize(x, y, canvas, form)
 end
 
 function Cloud:update(dt)
+  --[[
   if self.canvas == 'a' then
     self.body:setY(scrollcanvas.cay + self.relY)
   elseif self.canvas == 'b' then
     self.body:setY(scrollcanvas.cby + self.relY)
   end
+  ]]--
 end
 
 function Cloud:draw()
@@ -39,7 +41,7 @@ function Cloud:draw()
 
   love.graphics.setColor(255,0,0)
   --love.graphics.rectangle('line', self.body:getX()-w/2, self.body:getY()+h/2, w, h)
-  love.graphics.polygon("line", self.body:getWorldPoints(self.shape:getPoints()))
+  love.graphics.rectangle("line", self.fixture:getBoundingBox())
   love.graphics.setColor(255,255,255,255)
 
   love.graphics.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(),
