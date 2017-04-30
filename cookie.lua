@@ -54,8 +54,8 @@ function Cookie:draw()
       1, 1, self.image:getWidth()/2, self.image:getHeight()/2)
 end
 
+-- cookie A
 function beginContact(a, b, coll)
-  
   if(b:getUserData() == "cookie1") then
     cookieA.contact = true
     cookieA.image = cookieA.img.normal
@@ -65,17 +65,19 @@ function beginContact(a, b, coll)
       cookieB.winner = true
       
       if sound then
-       splash:play()
+       splashA:play()
       end
       
     else 
       
       if sound then
-       hit:play()
+        --hit:play()
       end
     end
   end
   
+  
+-- cookie B
   if(b:getUserData() == "cookie2") then
 
     cookieB.contact = true
@@ -86,32 +88,36 @@ function beginContact(a, b, coll)
       cookieA.winner = true
       
       if sound then
-       splash:play()
+       splashB:play()
       end 
       
     else 
       if (sound) then
-       hit:play()
+        --hit:play()
       end
     end
   end
   
 end
 
+
+
 function endContact(a, b, coll) 
+  --A
   if(b:getUserData() == "cookie1") then
     cookieA.contact = false
     
     if (sound) then
-    jump:play()
+    jumpA:play()
     end
   end
   
+  --B
   if(b:getUserData() == "cookie2") then
     cookieB.contact = false
     
     if (sound) then
-    jump:play()
+    jumpB:play()
     end
   end 
 end

@@ -57,7 +57,7 @@ function game:enter()
   if sound then
    music:rewind()
    music:play()
-   music:setVolume(0.2)
+   music:setVolume(0.4)
   end
   love.physics.setMeter(C.pixelpermeter)
 
@@ -93,7 +93,7 @@ function game:update(dt)
       sound = true
       music:rewind()
       music:play()
-      music:setVolume(0.2)
+      music:setVolume(0.4)
   end
   
   
