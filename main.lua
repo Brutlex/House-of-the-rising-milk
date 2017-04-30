@@ -18,9 +18,11 @@ C = { --table for constants
   H = love.graphics.getHeight(),
 }
 
+
 --DEBUG = require("mobdebug").start() -- start debugger for live-coding
 --DEBUG.on()
 --DEBUG.off()
+
 
 -- gamestate stuff
 menu = {}
@@ -53,9 +55,9 @@ end
 
 function game:enter()
   if sound then
-   music:rewind()
-   music:play()
-   music:setVolume(0.2)
+    music:setVolume(0.4)
+    music:rewind()
+    music:play()
   end
   love.physics.setMeter(C.pixelpermeter)
 
@@ -89,9 +91,10 @@ function game:update(dt)
   --Ton an mit L
   if love.keyboard.isDown("l") then
       sound = true
+            music:setVolume(0.4)
+
       music:rewind()
       music:play()
-      music:setVolume(0.2)
   end
   
   
@@ -126,11 +129,6 @@ function game:update(dt)
     end 
   end
 
-  -- DEBUG
-  if love.keyboard.isDown("escape") then
-    Gamestate.switch(win)
-  end
-
   scrollcanvas:update(dt)
 end
 
@@ -153,7 +151,6 @@ function game:draw()
 end
 
 function love.load()
-
   load_assets()
 
   love.graphics.setBackgroundColor(177, 215, 231)
