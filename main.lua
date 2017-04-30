@@ -18,9 +18,11 @@ C = { --table for constants
   H = love.graphics.getHeight(),
 }
 
+
 --DEBUG = require("mobdebug").start() -- start debugger for live-coding
 --DEBUG.on()
 --DEBUG.off()
+
 
 -- gamestate stuff
 menu = {}
@@ -126,11 +128,6 @@ function game:update(dt)
     end 
   end
 
-  -- DEBUG
-  if love.keyboard.isDown("escape") then
-    Gamestate.switch(win)
-  end
-
   scrollcanvas:update(dt)
 end
 
@@ -153,7 +150,6 @@ function game:draw()
 end
 
 function love.load()
-
   load_assets()
 
   love.graphics.setBackgroundColor(177, 215, 231)
