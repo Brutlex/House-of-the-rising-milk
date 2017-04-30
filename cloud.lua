@@ -63,11 +63,34 @@ function place_clouds()
   table.insert(clouds, Cloud:new(C.W/2-340, 30, 'a', cloudS1))
   
   table.insert(clouds, Cloud:new(C.W/2-290, 2100, 'b', cloudS1))
+  table.insert(clouds, Cloud:new(C.W/2-60, 2200, 'b', cloudS1))
+  table.insert(clouds, Cloud:new(C.W/2+10, 2000, 'b', cloudS1))
+  table.insert(clouds, Cloud:new(C.W/2+300, 2000, 'b', cloudS1))
+  table.insert(clouds, Cloud:new(C.W/2-300, 1800, 'b', cloudM1))
+  table.insert(clouds, Cloud:new(C.W/2+410, 1800, 'b', cloudS1))
+  table.insert(clouds, Cloud:new(C.W/2+10, 1650, 'b', cloudM2))
   
+  table.insert(clouds, Cloud:new(C.W/2+200, 1450, 'b', cloudM1))
+  --table.insert(clouds, Cloud:new(C.W/2-200, 1450, 'b', cloudS1))
   
+  --table.insert(clouds, Cloud:new(C.W/2+50, 1350, 'b', cloudS1))
+  table.insert(clouds, Cloud:new(C.W/2-200, 1250, 'b', cloudS1))
+  table.insert(clouds, Cloud:new(C.W/2+340, 1250, 'b', cloudS1))
+  table.insert(clouds, Cloud:new(C.W/2-340, 1175, 'b', cloudS1))
+  table.insert(clouds, Cloud:new(C.W/2+100, 1000, 'b', cloudM1))
   
-  table.insert(clouds, Cloud:new(C.W/2+200, C.H/2+200, 'b', cloudM1))
-  table.insert(clouds, Cloud:new(C.W/2-50, C.H/2-100, 'b', cloudM2))
-  table.insert(clouds, Cloud:new(C.W/2-300, C.H/2+150, 'b', cloudS1))
-  table.insert(clouds, Cloud:new(C.W/2150, C.H/2-350, 'b', cloudM2))
+  table.insert(clouds, Cloud:new(C.W/2-300, 800, 'b', cloudM2))
+  table.insert(clouds, Cloud:new(C.W/2+420, 800, 'b', cloudS1))
+  table.insert(clouds, Cloud:new(C.W/2+200, 600, 'b', cloudM1))
+  table.insert(clouds, Cloud:new(C.W/2-200, 550, 'b', cloudS1))
+  table.insert(clouds, Cloud:new(C.W/2-340, 400, 'b', cloudM2))
+  table.insert(clouds, Cloud:new(C.W/2+280, 250, 'b', cloudS1))
+  --table.insert(clouds, Cloud:new(C.W/2+200, 150, 'b', cloudS1))
+  
+  table.insert(clouds, Cloud:new(C.W/2-200, 150, 'b', cloudM2))
+  table.insert(clouds, Cloud:new(C.W/2+200, 0, 'b', cloudM2))
+  
+  --table.insert(clouds, Cloud:new(C.W/2-150, 2400, 'a', cloudM1))
+  table.insert(clouds, Cloud:new(C.W/2, 2150, 'a', cloudM2))
+
 end
