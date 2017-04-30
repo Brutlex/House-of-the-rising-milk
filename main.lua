@@ -127,7 +127,6 @@ function game:draw()
 end
 
 function love.load()
-
   load_assets()
 
   love.graphics.setBackgroundColor(177, 215, 231)

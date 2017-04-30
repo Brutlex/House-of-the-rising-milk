@@ -3,6 +3,7 @@ local class = require('lib/middleclass')
 
 Cookie = class('Cookie')
 
+
 function Cookie:initialize(x, y, name, img)
   local radius = 35
   local sensorheight = 5
@@ -50,34 +51,40 @@ function Cookie:draw()
   --love.graphics.rectangle('line', self.sensorbody:getX(), self.sensorbody:getY(), bottomRightX - topLeftX, bottomRightY - topLeftY)
   
   love.graphics.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(),
-      1, 1, self.image:getWidth()/2)
+      1, 1, self.image:getWidth()/2, self.image:getHeight()/2)
 end
 
 function beginContact(a, b, coll)
+  
   if(b:getUserData() == "cookie1") then
     cookieA.contact = true
     cookieA.image = cookieA.img.normal
+    
     if(a:getUserData() == "end") then
       Gamestate.switch(win)
       cookieB.winner = true
       --CookieB gewinnt , Spiel ende
     end
   end
+  
   if(b:getUserData() == "cookie2") then
     cookieB.contact = true
     cookieB.image = cookieB.img.normal
+    
     if(a:getUserData() == "end") then
       Gamestate.switch(win)
       cookieA.winner = true
       --CookieA gewinnt , Spiel ende
     end
-  end 
+  end
+  
 end
 
 function endContact(a, b, coll) 
   if(b:getUserData() == "cookie1") then
     cookieA.contact = false
   end
+  
   if(b:getUserData() == "cookie2") then
     cookieB.contact = false
   end 
