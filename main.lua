@@ -51,6 +51,7 @@ end
 function game:enter()
   music:rewind()
   music:play()
+  music:setVolume(0.2)
   love.physics.setMeter(C.pixelpermeter)
 
   world = love.physics.newWorld(0, C.g*love.physics.getMeter(), true)

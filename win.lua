@@ -1,6 +1,7 @@
 -- end functions
 
 function update_win()
+  music:setVolume(0.8)
   local bw, bh = 300, 100
   local state = suit.Button("AGAIN", {font = buttonFont}, C.W/2-bw/2,600, bw,bh)
   
