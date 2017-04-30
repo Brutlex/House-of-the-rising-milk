@@ -1,9 +1,8 @@
 -- end functions
 
 function update_win()
-  
   local bw, bh = 300, 100
-  local state = suit.Button("AGAIN", {font = buttonFont}, C.W/2-bw/2,500, bw,bh)
+  local state = suit.Button("AGAIN", {font = buttonFont}, C.W/2-bw/2,600, bw,bh)
   
   if state.hit then Gamestate.switch(game) end
 
@@ -13,4 +12,9 @@ function update_win()
 end
 
 function draw_win()
+  if (cookieB.winner) then
+  love.graphics.draw(cookieBmenu, C.W/2-150, 200)
+  elseif (cookieA.winner) then
+  love.graphics.draw(cookieAmenu, C.W/2-150, 200)
+  end
 end
