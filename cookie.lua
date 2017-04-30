@@ -61,7 +61,9 @@ function beginContact(a, b, coll)
       Gamestate.switch(win)
       cookieB.winner = true
       splash:play()
-      --CookieB gewinnt , Spiel ende
+      
+    else 
+      hit:play()
     end
   end
   if(b:getUserData() == "cookie2") then
@@ -72,7 +74,9 @@ function beginContact(a, b, coll)
       cookieA.winner = true
       splash:play()
       splash:setVolume(1) 
-      --CookieA gewinnt , Spiel ende
+      
+    else 
+      hit:play()
     end
   end 
 end
