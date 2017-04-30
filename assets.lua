@@ -45,5 +45,5 @@ keyUp = love.graphics.newImage("gfx/Keyboard_Black_Arrow_Up.png")
   music:setLooping()
   splash = love.audio.newSource('snd/splash3.wav', 'static')
   hit = love.audio.newSource('snd/hit.wav', 'static')
-  jump = love.audio.newSource('snd/jump.wav', 'static')
+  jump = love.audio.newSource('snd/jaw2.wav', 'static')
 end
