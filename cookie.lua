@@ -18,7 +18,7 @@ function Cookie:initialize(x, y, name, img)
 
   self.shape = love.physics.newCircleShape(self.radius)
   self.fixture = love.physics.newFixture(self.body, self.shape, 1)
-  self.fixture:setRestitution(0.7)
+  self.fixture:setRestitution(0.5)
   self.fixture:setFriction(0.1)
   self.fixture:setUserData(name.."body")
 
@@ -30,7 +30,7 @@ function Cookie:initialize(x, y, name, img)
 
   self.joint = love.physics.newWeldJoint(self.body, self.sensorbody, x, y, false)
 
-  self.contact = true
+  self.contact = false
   self.img = img
   self.image = self.img.normal  
 end
@@ -69,8 +69,8 @@ function Cookie:draw()
   love.graphics.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(),
     1, 1, self.image:getWidth()/2, self.image:getHeight()/2)
 
-  --[[
-   love.graphics.setFont(smallFont)
+--[[
+  love.graphics.setFont(smallFont)
   if self.name == 'cookie2' then
     love.graphics.setColor(255,0,0)
     love.graphics.print('Cookie B contact: ' .. tostring(self.contact), 50, 50)
@@ -86,7 +86,7 @@ function Cookie:draw()
   --love.graphics.rectangle('line', self.sensorbody:getX()-self.radius/2, self.sensorbody:getY()-self.sensorheight/2, self.radius, self.sensorheight)
   love.graphics.circle('line', self.sensorbody:getX(), self.sensorbody:getY(), self.sensorradius)
   love.graphics.setColor(255,255,255,255)
-  ]]--
+]]--
 end
 
 
@@ -102,6 +102,8 @@ function beginContact(a, b, coll)
   if ca == "cloud" and (cb == "cookie1" or cb == "cookie2") then
     collideCloud(cb, ca)
   end
+
+
 
   -- collide with cookie
   if ca == "cookie1" and cb == "cookie2body" then
@@ -140,8 +142,6 @@ end
 function endContact(a, b, coll) 
   local ca, cb = a:getUserData(), b:getUserData()
 
-
-
   if ca == "cookie1" and cb == "cookie2body" then
     -- A on B, A is ca
     cookieA.contact = false
@@ -167,11 +167,25 @@ function endContact(a, b, coll)
   end
 end
 
+function collideCloud(ccookie, ccloud)
+  if ccookie == "cookie1" then
+    cookieA.contact = true
+    cookieA.image = cookieA.img.normal
+  elseif ccookie == "cookie2" then
+    cookieB.contact = true
+    cookieB.image = cookieB.img.normal
+  else
+    print("collide bug")
+  end
+end
+
 function unCollideCloud(ccookie, ccloud)
   if ccookie == "cookie1" then
     cookieA.contact = false
-  else
+  elseif ccookie == "cookie2" then
     cookieB.contact = false
+  else
+    print("uncollide bug!")
   end
 end
 
@@ -181,14 +195,4 @@ end
 
 function postSolve(a, b, coll, normalimpulse, tangentimpulse)
   --not used
-end
-
-function collideCloud(ccookie, ccloud)
-  if ccookie == "cookie1" then
-    cookieA.contact = true
-    cookieA.image = cookieA.img.normal
-  else
-    cookieB.contact = true
-    cookieB.image = cookieB.img.normal
-  end
 end

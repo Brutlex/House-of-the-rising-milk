@@ -6,7 +6,7 @@ function love.conf(t)
     t.externalstorage = false           -- True to save files (and read from the save directory) in external storage on Android (boolean) 
     t.gammacorrect = false              -- Enable gamma-correct rendering, when supported by the system (boolean)
  
-    t.window.title = "Survival of the Cookiest"         -- The window title (string)
+    t.window.title = "Survival of the Cookiest - version 1.1"         -- The window title (string)
     t.window.icon = "gfx/CookieA_front.png"                 -- Filepath to an image to use as the window's icon (string)
     t.window.width = 1024                -- The window width (number)
     t.window.height = 768               -- The window height (number)

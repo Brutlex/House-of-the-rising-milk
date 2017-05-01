@@ -34,7 +34,7 @@ sound = true
 
 function menu:enter()
   if sound then
-   music:play() 
+    music:play() 
   end
 end
 
@@ -66,13 +66,13 @@ function game:enter()
   borderL()
   borderR()
   borderU()
-  
+
 
   --Test wolken --
   scrollcanvas = SC:new()
-  
+
   place_clouds()
-  
+
   -- CookieSpieler --
   cookieA = Cookie:new(C.W/2+350, 400, "cookie1", Cookie1)
   cookieB = Cookie:new(C.W/2-350, 400, "cookie2", Cookie2)
@@ -81,7 +81,7 @@ end
 
 function game:update(dt)
   world:update(dt)
-  
+
   -- Bewegungen --
   -- cookie A
   if love.keyboard.isDown("left") then
@@ -121,9 +121,9 @@ end
 
 function game:draw()
   scrollcanvas:draw()
-  
+
   love.graphics.draw(background, 0, 0)
-  
+
   for k,v in pairs(clouds) do
     v:draw()
   end
@@ -177,5 +177,13 @@ function love.keypressed(k, s, r)
       sound = true
       love.audio.resume()
     end
+  end
+
+  if k == '0' then
+    scrollcanvas.speed = scrollcanvas.speed + 5
+  end
+
+  if k == '9' then
+    scrollcanvas.speed = scrollcanvas.speed - 5
   end
 end
