@@ -55,7 +55,7 @@ end
 function Cookie:springen()
   self.body:applyLinearImpulse(0, -self.speed*10)
   self.image = self.img.jumpUp
-  
+
   if sound then
     if self.name == 'cookie1' then
       jumpA:play()
@@ -69,6 +69,7 @@ function Cookie:draw()
   love.graphics.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(),
     1, 1, self.image:getWidth()/2, self.image:getHeight()/2)
 
+  --[[
    love.graphics.setFont(smallFont)
   if self.name == 'cookie2' then
     love.graphics.setColor(255,0,0)
@@ -85,6 +86,7 @@ function Cookie:draw()
   --love.graphics.rectangle('line', self.sensorbody:getX()-self.radius/2, self.sensorbody:getY()-self.sensorheight/2, self.radius, self.sensorheight)
   love.graphics.circle('line', self.sensorbody:getX(), self.sensorbody:getY(), self.sensorradius)
   love.graphics.setColor(255,255,255,255)
+  ]]--
 end
 
 
@@ -137,9 +139,9 @@ end
 
 function endContact(a, b, coll) 
   local ca, cb = a:getUserData(), b:getUserData()
-    
 
-    
+
+
   if ca == "cookie1" and cb == "cookie2body" then
     -- A on B, A is ca
     cookieA.contact = false
@@ -166,11 +168,11 @@ function endContact(a, b, coll)
 end
 
 function unCollideCloud(ccookie, ccloud)
-    if ccookie == "cookie1" then
-      cookieA.contact = false
-    else
-      cookieB.contact = false
-    end
+  if ccookie == "cookie1" then
+    cookieA.contact = false
+  else
+    cookieB.contact = false
+  end
 end
 
 function preSolve(a, b, coll)

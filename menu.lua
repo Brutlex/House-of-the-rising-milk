@@ -1,17 +1,6 @@
 -- menu functions
 
 function update_menu()
-  --Ton aus mit M
-  if love.keyboard.isDown("m") then
-      sound = false
-      love.audio.pause()
-  end
-  --Ton an mit L
-  if love.keyboard.isDown("l") then
-      sound = true
-      love.audio.resume()
-  end
-  
   local bw, bh = 200, 80
   local state = suit.Button("FIGHT!", {font = buttonFont}, C.W/2-bw/2,420, bw,bw-50)
   local credits_state = suit.Button("CREDITS", {font = smallFont}, C.W/2-bw/2,600, bw,bh)

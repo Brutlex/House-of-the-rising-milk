@@ -19,7 +19,7 @@ C = { --table for constants
 }
 
 
-DEBUG = require("mobdebug").start() -- start debugger for live-coding
+--DEBUG = require("mobdebug").start() -- start debugger for live-coding
 --DEBUG.on()
 --DEBUG.off()
 
@@ -55,7 +55,6 @@ end
 
 function game:enter()
   if sound then
-    music:setVolume(0.4)
     music:rewind()
     music:play()
   end
@@ -82,21 +81,6 @@ end
 
 function game:update(dt)
   world:update(dt)
-  
-  --Ton aus mit M
-  if love.keyboard.isDown("m") then
-      sound = false
-      love.audio.pause()
-  end
-  --Ton an mit L
-  if love.keyboard.isDown("l") then
-      sound = true
-            music:setVolume(0.4)
-
-      music:rewind()
-      music:play()
-  end
-  
   
   -- Bewegungen --
   -- cookie A
@@ -182,4 +166,16 @@ end
 
 function love.draw()
   suit.draw()
-end 
+end
+
+function love.keypressed(k, s, r)
+  if k == 'm' then
+    if sound then
+      sound = false
+      love.      audio.pause()
+    else
+      sound = true
+      love.audio.resume()
+    end
+  end
+end

@@ -7,21 +7,6 @@ function update_win()
    winner = "Mrs Brown"
   end
   
-  if sound then
-    music:setVolume(0.4)
-  end 
-    
-  if love.keyboard.isDown("m") then
-      sound = false
-      love.audio.pause()
-  end
-  --Ton an mit L
-  if love.keyboard.isDown("l") then
-      sound = true
-      music:rewind()
-      music:play()
-      music:setVolume(0.4)
-  end
   local bw, bh = 300, 100
   local state = suit.Button("AGAIN", {font = buttonFont}, C.W/2-bw/2,600, bw,bh)
   
