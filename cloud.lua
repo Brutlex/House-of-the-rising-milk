@@ -10,21 +10,13 @@ function Cloud:initialize(x, y, canvas, form)
   self.image = form
   self.w = self.image:getWidth()
   self.h = self.image:getHeight()
+  self.sfw = 0.9 --shape scaling factor
+  self.sfh = 0.8
   self.body = love.physics.newBody(world, x, y)
-
-  self.shape = love.physics.newRectangleShape(self.w-20, self.h-10)
---[[
-  if form == cloudM1 then
-    self.shape = love.physics.newRectangleShape(387,30)
-  elseif form == cloudS1 then
-    self.shape = love.physics.newRectangleShape(180,47)
-  elseif form == cloudM2 then
-    self.shape = love.physics.newRectangleShape(362,30)
-  end
-]]--
+  self.shape = love.physics.newRectangleShape(self.w*self.sfw, self.h*self.sfh)
   self.fixture = love.physics.newFixture(self.body, self.shape)
   self.fixture:setFriction(1)
-  self.fixture:setRestitution(0.5)
+  self.fixture:setRestitution(0.3)
   self.fixture:setUserData("cloud")
 end
 
@@ -38,14 +30,15 @@ end
 
 function Cloud:draw()
   local w,h = self.image:getWidth(), self.image:getHeight()
-
-  love.graphics.setColor(255,0,0)
-  --love.graphics.rectangle('line', self.body:getX()-w/2, self.body:getY()+h/2, w, h)
-  --love.graphics.rectangle("line", self.body:getWorldPoints(self.fixture:getBoundingBox()))
-  love.graphics.setColor(255,255,255,255)
-
+  
   love.graphics.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(),
     1, 1, self.image:getWidth()/2, self.image:getHeight()/2)
+  
+  love.graphics.setColor(255,0,0)
+  love.graphics.rectangle('line', self.body:getX()-(w*self.sfw)/2, self.body:getY()-(h*self.sfh)/2, w*self.sfw, h*self.sfh)
+  love.graphics.setColor(255,255,255,255)
+
+
 end
 
 function place_clouds()

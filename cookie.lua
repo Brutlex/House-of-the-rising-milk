@@ -5,29 +5,32 @@ Cookie = class('Cookie')
 
 
 function Cookie:initialize(x, y, name, img)
-  local radius = 35
-  local sensorheight = 5
+  self.radius = 35
+  --self.sensorheight = 30
+  self.sensorradius = self.radius/2.5
   self.speed = 30
   self.winner = false
   self.maxvel = 300
+  self.name = name
   self.body = love.physics.newBody(world, x, y, "dynamic")
   self.body:setFixedRotation(true)
   self.body:setLinearDamping(0.1)
-  
-  self.shape = love.physics.newCircleShape(radius)
+
+  self.shape = love.physics.newCircleShape(self.radius)
   self.fixture = love.physics.newFixture(self.body, self.shape, 1)
-  self.fixture:setRestitution(0.5)
+  self.fixture:setRestitution(0.7)
   self.fixture:setFriction(0.1)
-  
-  self.sensorbody = love.physics.newBody(world, x+radius/2, y+radius*2, "dynamic")
-  self.sensorshape = love.physics.newRectangleShape(radius/2, sensorheight)
+  self.fixture:setUserData(name.."body")
+
+  self.sensorbody = love.physics.newBody(world, x, y+self.radius+self.sensorradius, "dynamic")
+  self.sensorshape = love.physics.newCircleShape(self.sensorradius)
   self.sensorfixture = love.physics.newFixture(self.sensorbody, self.sensorshape, 0)
   self.sensorfixture:setSensor(true)
   self.sensorfixture:setUserData(name)
-  
-  self.joint = love.physics.newWeldJoint( self.body, self.sensorbody, x, y+radius*2, false)
-  
-  self.contact = false
+
+  self.joint = love.physics.newWeldJoint(self.body, self.sensorbody, x, y, false)
+
+  self.contact = true
   self.img = img
   self.image = self.img.normal  
 end
@@ -50,85 +53,124 @@ function Cookie:linksGehen()
 end
 
 function Cookie:springen()
-  self.body:applyLinearImpulse(0, -self.speed*8)
+  self.body:applyLinearImpulse(0, -self.speed*10)
   self.image = self.img.jumpUp
+  
+  if sound then
+    if self.name == 'cookie1' then
+      jumpA:play()
+    else
+      jumpB:play()
+    end
+  end
 end
 
 function Cookie:draw()
-  --wrong position
-  --topLeftX, topLeftY, bottomRightX, bottomRightY = self.sensorfixture:getBoundingBox()
-  --love.graphics.rectangle('line', self.sensorbody:getX(), self.sensorbody:getY(), bottomRightX - topLeftX, bottomRightY - topLeftY)
-  
   love.graphics.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(),
-      1, 1, self.image:getWidth()/2, self.image:getHeight()/2)
+    1, 1, self.image:getWidth()/2, self.image:getHeight()/2)
+
+   love.graphics.setFont(smallFont)
+  if self.name == 'cookie2' then
+    love.graphics.setColor(255,0,0)
+    love.graphics.print('Cookie B contact: ' .. tostring(self.contact), 50, 50)
+  else
+    love.graphics.setColor(0,0,255)
+    love.graphics.print('Cookie A contact: ' .. tostring(self.contact), 700, 50)
+  end
+  love.graphics.setColor(0,255,0)
+  --love.graphics.print(tostring(CA) .. " " .. tostring(CB), 300, 100)
+  love.graphics.setColor(255,0,0)
+  love.graphics.circle('line', self.body:getX(), self.body:getY(), self.radius)
+  love.graphics.setColor(0,255,0)
+  --love.graphics.rectangle('line', self.sensorbody:getX()-self.radius/2, self.sensorbody:getY()-self.sensorheight/2, self.radius, self.sensorheight)
+  love.graphics.circle('line', self.sensorbody:getX(), self.sensorbody:getY(), self.sensorradius)
+  love.graphics.setColor(255,255,255,255)
 end
 
--- cookie A
+
 function beginContact(a, b, coll)
-  if(b:getUserData() == "cookie1") then
+
+  local ca, cb = a:getUserData(), b:getUserData()
+
+  -- collide with clouds
+  if (ca == "cookie1" or ca == "cookie2") and cb == "cloud" then
+    collideCloud(ca, cb)
+  end
+
+  if ca == "cloud" and (cb == "cookie1" or cb == "cookie2") then
+    collideCloud(cb, ca)
+  end
+
+  -- collide with cookie
+  if ca == "cookie1" and cb == "cookie2body" then
+    -- A on B, A is ca
     cookieA.contact = true
     cookieA.image = cookieA.img.normal
-    
-    if(a:getUserData() == "end") then
-      Gamestate.switch(win)
-      cookieB.winner = true
-      
-      if sound then
-       splashA:play()
-      end
-      
-    else 
-      
-      if sound then
-        --hit:play()
-      end
-    end
-  end
-  
-  
--- cookie B
-  if(b:getUserData() == "cookie2") then
-
+  elseif cb == "cookie1" and ca == "cookie2body" then
+    -- A on B, A is cb
+    cookieA.contact = true
+    cookieA.image = cookieA.img.normal
+  elseif ca == "cookie2" and cb == "cookie1body" then
+    -- B on A, B is ca
     cookieB.contact = true
     cookieB.image = cookieB.img.normal
-    
-    if(a:getUserData() == "end") then
-      Gamestate.switch(win)
-      cookieA.winner = true
-      
-      if sound then
-       splashB:play()
-      end 
-      
-    else 
-      if (sound) then
-        --hit:play()
-      end
-    end
+  elseif cb == "cookie2" and ca == "cookie1body" then
+    -- B on A, B is cb
+    cookieB.contact = true
+    cookieB.image = cookieB.img.normal
   end
-  
+
+
+  -- collide with milk
+  if (ca == "cookie1" and cb == "end") or (ca == "end" and cb == "cookie1") then
+    cookieB.winner = true
+    if sound then splashA:play() end
+    Gamestate.switch(win)
+  end
+
+  if (ca == "cookie2" and cb == "end") or (ca == "end" and cb == "cookie2") then
+    cookieA.winner = true
+    if sound then splashB:play() end
+    Gamestate.switch(win)
+  end
 end
 
-
-
 function endContact(a, b, coll) 
-  --A
-  if(b:getUserData() == "cookie1") then
+  local ca, cb = a:getUserData(), b:getUserData()
+    
+
+    
+  if ca == "cookie1" and cb == "cookie2body" then
+    -- A on B, A is ca
     cookieA.contact = false
-    
-    if (sound) then
-    jumpA:play()
-    end
-  end
-  
-  --B
-  if(b:getUserData() == "cookie2") then
+  elseif cb == "cookie1" and ca == "cookie2body" then
+    -- A on B, A is cb
+    cookieA.contact = false
+  elseif ca == "cookie2" and cb == "cookie1body" then
+    -- B on A, B is ca
     cookieB.contact = false
-    
-    if (sound) then
-    jumpB:play()
+  elseif cb == "cookie2" and ca == "cookie1body" then
+    -- B on A, B is cb
+    cookieB.contact = false
+  elseif (ca == "cookie1" or ca == "cookie2") and cb == "cloud" then
+    unCollideCloud(ca, cb)
+  elseif ca == "cloud" and (cb == "cookie1" or cb == "cookie2") then
+    unCollideCloud(cb, ca)
+  else
+    --[[
+    print(ca)
+    print(cb)
+    print("")
+    ]]--
+  end
+end
+
+function unCollideCloud(ccookie, ccloud)
+    if ccookie == "cookie1" then
+      cookieA.contact = false
+    else
+      cookieB.contact = false
     end
-  end 
 end
 
 function preSolve(a, b, coll)
@@ -137,4 +179,14 @@ end
 
 function postSolve(a, b, coll, normalimpulse, tangentimpulse)
   --not used
+end
+
+function collideCloud(ccookie, ccloud)
+  if ccookie == "cookie1" then
+    cookieA.contact = true
+    cookieA.image = cookieA.img.normal
+  else
+    cookieB.contact = true
+    cookieB.image = cookieB.img.normal
+  end
 end
