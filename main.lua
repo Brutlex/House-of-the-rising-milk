@@ -51,6 +51,9 @@ function menu:keypressed(key, code)
   if key == 'return' then
     Gamestate.switch(game)
   end
+  if key == 'escape' then
+    love.event.quit()
+  end
 end
 
 function game:enter()
@@ -141,6 +144,12 @@ function love.load()
 
   Gamestate.registerEvents()
   Gamestate.switch(menu)
+end
+
+function game:keypressed(key, code)
+  if key == 'escape' then
+    Gamestate.switch(menu)
+  end
 end
 
 
