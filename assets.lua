@@ -48,7 +48,7 @@ function load_assets()
   -- musik
   music = love.audio.newSource('snd/CookiesNMilk.mp3', 'stream')
   music:setLooping(true)
-  music:setVolume(0.4)
+  music:setVolume(0.3)
   splashA = love.audio.newSource('snd/splash3.wav', 'static')
   splashB = love.audio.newSource('snd/splash3.wav', 'static')
   jumpA = love.audio.newSource('snd/jaw.wav', 'static')

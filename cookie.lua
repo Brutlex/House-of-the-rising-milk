@@ -37,20 +37,22 @@ end
 
 
 function Cookie:rechtsGehen()
-  local x,y = self.body:getLinearVelocity()
+  local x,_ = self.body:getLinearVelocity()
   if math.abs(x) < self.maxvel then
     self.body:applyLinearImpulse(self.speed, 0)
     self.image = self.img.right
   end
 end
 
+
 function Cookie:linksGehen()
-  local x,y = self.body:getLinearVelocity()
+  local x,_ = self.body:getLinearVelocity()
   if math.abs(x) < self.maxvel then
     self.body:applyLinearImpulse(-self.speed, 0)
     self.image = self.img.left
   end
 end
+
 
 function Cookie:springen()
   self.body:applyLinearImpulse(0, -self.speed*10)
@@ -65,11 +67,11 @@ function Cookie:springen()
   end
 end
 
+
 function Cookie:draw()
   love.graphics.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(),
     1, 1, self.image:getWidth()/2, self.image:getHeight()/2)
 
---[[
   love.graphics.setFont(smallFont)
   if self.name == 'cookie2' then
     love.graphics.setColor(255,0,0)
@@ -86,109 +88,73 @@ function Cookie:draw()
   --love.graphics.rectangle('line', self.sensorbody:getX()-self.radius/2, self.sensorbody:getY()-self.sensorheight/2, self.radius, self.sensorheight)
   love.graphics.circle('line', self.sensorbody:getX(), self.sensorbody:getY(), self.sensorradius)
   love.graphics.setColor(255,255,255,255)
-]]--
 end
 
 
 function beginContact(a, b, coll)
-
   local ca, cb = a:getUserData(), b:getUserData()
 
   -- collide with clouds
-  if (ca == "cookie1" or ca == "cookie2") and cb == "cloud" then
-    collideCloud(ca, cb)
-  end
-
-  if ca == "cloud" and (cb == "cookie1" or cb == "cookie2") then
-    collideCloud(cb, ca)
-  end
-
-
-
-  -- collide with cookie
-  if ca == "cookie1" and cb == "cookie2body" then
-    -- A on B, A is ca
-    cookieA.contact = true
-    cookieA.image = cookieA.img.normal
-  elseif cb == "cookie1" and ca == "cookie2body" then
-    -- A on B, A is cb
-    cookieA.contact = true
-    cookieA.image = cookieA.img.normal
-  elseif ca == "cookie2" and cb == "cookie1body" then
-    -- B on A, B is ca
-    cookieB.contact = true
-    cookieB.image = cookieB.img.normal
-  elseif cb == "cookie2" and ca == "cookie1body" then
-    -- B on A, B is cb
-    cookieB.contact = true
-    cookieB.image = cookieB.img.normal
-  end
-
-
-  -- collide with milk
-  if (ca == "cookie1" and cb == "end") or (ca == "end" and cb == "cookie1") then
+  if ((ca == "cookie1" or ca == "cookie2") and cb == "cloud")
+  or (ca == "cookie1" and cb == "cookie2body")
+  or (ca == "cookie2" and cb == "cookie1body") then
+    cookieBeginContact(ca)
+  elseif (ca == "cloud" and (cb == "cookie1" or cb == "cookie2"))
+  or (cb == "cookie1" and ca == "cookie2body")
+  or (cb == "cookie2" and ca == "cookie1body") then
+    cookieBeginContact(cb)
+  elseif (ca == "cookie1" and cb == "end") or (ca == "end" and cb == "cookie1") then -- collide with milk
     cookieB.winner = true
     if sound then splashA:play() end
     Gamestate.switch(win)
-  end
-
-  if (ca == "cookie2" and cb == "end") or (ca == "end" and cb == "cookie2") then
+  elseif (ca == "cookie2" and cb == "end") or (ca == "end" and cb == "cookie2") then
     cookieA.winner = true
     if sound then splashB:play() end
     Gamestate.switch(win)
   end
 end
 
+
 function endContact(a, b, coll) 
   local ca, cb = a:getUserData(), b:getUserData()
 
-  if ca == "cookie1" and cb == "cookie2body" then
-    -- A on B, A is ca
-    cookieA.contact = false
-  elseif cb == "cookie1" and ca == "cookie2body" then
-    -- A on B, A is cb
-    cookieA.contact = false
-  elseif ca == "cookie2" and cb == "cookie1body" then
-    -- B on A, B is ca
-    cookieB.contact = false
-  elseif cb == "cookie2" and ca == "cookie1body" then
-    -- B on A, B is cb
-    cookieB.contact = false
-  elseif (ca == "cookie1" or ca == "cookie2") and cb == "cloud" then
-    unCollideCloud(ca, cb)
-  elseif ca == "cloud" and (cb == "cookie1" or cb == "cookie2") then
-    unCollideCloud(cb, ca)
-  else
-    --[[
-    print(ca)
-    print(cb)
-    print("")
-    ]]--
+  if (ca == "cookie1" and cb == "cookie2body")
+  or (ca == "cookie2" and cb == "cookie1body")
+  or ((ca == "cookie1" or ca == "cookie2") and cb == "cloud") then
+    cookieEndContact(ca) -- A on B, A is ca
+  elseif (cb == "cookie1" and ca == "cookie2body")
+  or (cb == "cookie2" and ca == "cookie1body")
+  or (ca == "cloud" and (cb == "cookie1" or cb == "cookie2")) then
+    cookieEndContact(cb) -- A on B, A is cb
   end
 end
 
-function collideCloud(ccookie, ccloud)
+
+function cookieBeginContact(ccookie)
   if ccookie == "cookie1" then
     cookieA.contact = true
     cookieA.image = cookieA.img.normal
   elseif ccookie == "cookie2" then
     cookieB.contact = true
     cookieB.image = cookieB.img.normal
-  else
-    print("collide bug")
   end
 end
 
-function unCollideCloud(ccookie, ccloud)
+
+function cookieEndContact(ccookie)
   if ccookie == "cookie1" then
+--    local x, y = cookieB.body:getLinearVelocity()
     cookieA.contact = false
+    cookieA.image = cookieA.img.jumpUp
   elseif ccookie == "cookie2" then
+--    local x, y = cookieB.body:getLinearVelocity()
     cookieB.contact = false
-  else
-    print("uncollide bug!")
+    cookieB.image = cookieB.img.jumpUp
   end
 end
 
+
+--[[
 function preSolve(a, b, coll)
   --not used
 end
@@ -196,3 +162,4 @@ end
 function postSolve(a, b, coll, normalimpulse, tangentimpulse)
   --not used
 end
+]]--
