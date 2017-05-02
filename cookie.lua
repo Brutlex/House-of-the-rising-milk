@@ -72,6 +72,7 @@ function Cookie:draw()
   love.graphics.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(),
     1, 1, self.image:getWidth()/2, self.image:getHeight()/2)
 
+--[[ -- Debug
   love.graphics.setFont(smallFont)
   if self.name == 'cookie2' then
     love.graphics.setColor(255,0,0)
@@ -88,6 +89,7 @@ function Cookie:draw()
   --love.graphics.rectangle('line', self.sensorbody:getX()-self.radius/2, self.sensorbody:getY()-self.sensorheight/2, self.radius, self.sensorheight)
   love.graphics.circle('line', self.sensorbody:getX(), self.sensorbody:getY(), self.sensorradius)
   love.graphics.setColor(255,255,255,255)
+  ]]--
 end
 
 
@@ -121,11 +123,11 @@ function endContact(a, b, coll)
   if (ca == "cookie1" and cb == "cookie2body")
   or (ca == "cookie2" and cb == "cookie1body")
   or ((ca == "cookie1" or ca == "cookie2") and cb == "cloud") then
-    cookieEndContact(ca) -- A on B, A is ca
+    cookieEndContact(ca, coll) -- A on B, A is ca
   elseif (cb == "cookie1" and ca == "cookie2body")
   or (cb == "cookie2" and ca == "cookie1body")
   or (ca == "cloud" and (cb == "cookie1" or cb == "cookie2")) then
-    cookieEndContact(cb) -- A on B, A is cb
+    cookieEndContact(cb, coll) -- A on B, A is cb
   end
 end
 
@@ -141,25 +143,15 @@ function cookieBeginContact(ccookie)
 end
 
 
-function cookieEndContact(ccookie)
-  if ccookie == "cookie1" then
---    local x, y = cookieB.body:getLinearVelocity()
-    cookieA.contact = false
-    cookieA.image = cookieA.img.jumpUp
-  elseif ccookie == "cookie2" then
---    local x, y = cookieB.body:getLinearVelocity()
-    cookieB.contact = false
-    cookieB.image = cookieB.img.jumpUp
+function cookieEndContact(ccookie, coll)
+  --print(ccookie .. " is touching " .. tostring(coll:isTouching()))
+  if not coll:isTouching() then
+    if ccookie == "cookie1" then
+      cookieA.contact = false
+      cookieA.image = cookieA.img.jumpUp
+    elseif ccookie == "cookie2" then
+      cookieB.contact = false
+      cookieB.image = cookieB.img.jumpUp
+    end
   end
 end
-
-
---[[
-function preSolve(a, b, coll)
-  --not used
-end
-
-function postSolve(a, b, coll, normalimpulse, tangentimpulse)
-  --not used
-end
-]]--
