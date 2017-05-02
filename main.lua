@@ -123,16 +123,16 @@ end
 
 
 function game:draw()
-  scrollcanvas:draw()
+--  scrollcanvas:draw()
 
   love.graphics.draw(background, 0, 0)
+
+  cookieA:draw()
+  cookieB:draw()
 
   for k,v in pairs(clouds) do
     v:draw()
   end
-
-  cookieA:draw()
-  cookieB:draw()
 
   love.graphics.draw(milch, 0, 550)
 end
@@ -181,7 +181,7 @@ function love.keypressed(k, s, r)
   if k == 'm' then
     if sound then
       sound = false
-      love.      audio.pause()
+      love.audio.pause()
     else
       sound = true
       love.audio.resume()
