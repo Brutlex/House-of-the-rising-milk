@@ -16,9 +16,10 @@ function Cloud:initialize(x, y, canvas, form)
   self.shape = love.physics.newRectangleShape(self.w*self.sfw, self.h*self.sfh)
   self.fixture = love.physics.newFixture(self.body, self.shape)
   self.fixture:setFriction(0.9)
-  self.fixture:setRestitution(0.3)
+  self.fixture:setRestitution(0.1)
   self.fixture:setUserData("cloud")
 end
+
 
 function Cloud:update(dt)
   if self.canvas == 'a' then
@@ -28,18 +29,19 @@ function Cloud:update(dt)
   end
 end
 
+
 function Cloud:draw()
   love.graphics.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(),
     1, 1, self.image:getWidth()/2, self.image:getHeight()/2)
 
-  --[[
-  local w,h = self.image:getWidth(), self.image:getHeight()
-  love.graphics.setColor(255,0,0)
-  love.graphics.rectangle('line', self.body:getX()-(w*self.sfw)/2, self.body:getY()-(h*self.sfh)/2, w*self.sfw, h*self.sfh)
-  love.graphics.setColor(255,255,255,255)
-  ]]--
-
+  if DRAW_DEBUG then
+    local w,h = self.image:getWidth(), self.image:getHeight()
+    love.graphics.setColor(0,0,255)
+    love.graphics.rectangle('line', self.body:getX()-(w*self.sfw)/2, self.body:getY()-(h*self.sfh)/2, w*self.sfw, h*self.sfh)
+    love.graphics.setColor(255,255,255,255)
+  end
 end
+
 
 function place_clouds()
   clouds = {}
@@ -92,9 +94,8 @@ function place_clouds()
   --table.insert(clouds, Cloud:new(C.W/2+200, 150, 'b', cloudS1))
 
   table.insert(clouds, Cloud:new(C.W/2-200, 150, 'b', cloudM2))
-  table.insert(clouds, Cloud:new(C.W/2+200, 0, 'b', cloudM2))
+  table.insert(clouds, Cloud:new(C.W/2+200, 0, 'b', cloudM2)) -- not the greatest postition. Pop-in is hidden by milk.
 
   --table.insert(clouds, Cloud:new(C.W/2-150, 2400, 'a', cloudM1))
   table.insert(clouds, Cloud:new(C.W/2, 2150, 'a', cloudM2))
-
 end

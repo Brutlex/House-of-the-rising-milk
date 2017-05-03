@@ -15,10 +15,11 @@ function Cookie:initialize(x, y, name, img)
   self.body = love.physics.newBody(world, x, y, "dynamic")
   self.body:setFixedRotation(true)
   self.body:setLinearDamping(0.1)
+  self.body:setSleepingAllowed(false)
 
   self.shape = love.physics.newCircleShape(self.radius)
   self.fixture = love.physics.newFixture(self.body, self.shape, 1)
-  self.fixture:setRestitution(0.5)
+  self.fixture:setRestitution(1)
   self.fixture:setFriction(0.1)
   self.fixture:setUserData(name.."body")
 
@@ -72,24 +73,26 @@ function Cookie:draw()
   love.graphics.draw(self.image, self.body:getX(), self.body:getY(), self.body:getAngle(),
     1, 1, self.image:getWidth()/2, self.image:getHeight()/2)
 
---[[ -- Debug
-  love.graphics.setFont(smallFont)
-  if self.name == 'cookie2' then
+  if DRAW_DEBUG then
+    love.graphics.setFont(smallFont)
+    if self.name == 'cookie2' then
+      love.graphics.setColor(255,0,0)
+      love.graphics.print('Cookie B contact: ' .. tostring(self.contact), 50, 50)
+    else
+      love.graphics.setColor(0,0,255)
+      love.graphics.print('Cookie A contact: ' .. tostring(self.contact), 700, 50)
+    end
+    love.graphics.setColor(0,255,0)
+    --love.graphics.print(tostring(CA) .. " " .. tostring(CB), 300, 100)
+
+
     love.graphics.setColor(255,0,0)
-    love.graphics.print('Cookie B contact: ' .. tostring(self.contact), 50, 50)
-  else
-    love.graphics.setColor(0,0,255)
-    love.graphics.print('Cookie A contact: ' .. tostring(self.contact), 700, 50)
+    love.graphics.circle('line', self.body:getX(), self.body:getY(), self.radius)
+    love.graphics.setColor(0,255,0)
+    --love.graphics.rectangle('line', self.sensorbody:getX()-self.radius/2, self.sensorbody:getY()-self.sensorheight/2, self.radius, self.sensorheight)
+    love.graphics.circle('line', self.sensorbody:getX(), self.sensorbody:getY(), self.sensorradius)
+    love.graphics.setColor(255,255,255,255)
   end
-  love.graphics.setColor(0,255,0)
-  --love.graphics.print(tostring(CA) .. " " .. tostring(CB), 300, 100)
-  love.graphics.setColor(255,0,0)
-  love.graphics.circle('line', self.body:getX(), self.body:getY(), self.radius)
-  love.graphics.setColor(0,255,0)
-  --love.graphics.rectangle('line', self.sensorbody:getX()-self.radius/2, self.sensorbody:getY()-self.sensorheight/2, self.radius, self.sensorheight)
-  love.graphics.circle('line', self.sensorbody:getX(), self.sensorbody:getY(), self.sensorradius)
-  love.graphics.setColor(255,255,255,255)
-  ]]--
 end
 
 
