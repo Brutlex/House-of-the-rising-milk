@@ -19,7 +19,7 @@ function Cookie:initialize(x, y, name, img)
 
   self.shape = love.physics.newCircleShape(self.radius)
   self.fixture = love.physics.newFixture(self.body, self.shape, 1)
-  self.fixture:setRestitution(1)
+  self.fixture:setRestitution(0.8)
   self.fixture:setFriction(0.1)
   self.fixture:setUserData(name.."body")
 

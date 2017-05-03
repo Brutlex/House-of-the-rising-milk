@@ -160,6 +160,13 @@ function win:draw()
 end  
 
 
+function win:keypressed(key, code)
+  if key == 'escape' then
+    Gamestate.switch(menu)
+  end
+end
+
+
 function credits:update()
   update_credits()
 end
